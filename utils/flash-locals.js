@@ -13,7 +13,6 @@ module.exports = (res) => {
         showSuccesses: showSuccesses,
         successes: flashMessages.success
     };
-    console.log(flashMessages.data)
     if (flashMessages.data) locals.data = flashMessages.data[0];
     return locals;
 }

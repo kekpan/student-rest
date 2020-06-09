@@ -1,4 +1,5 @@
 exports.register = (req) => {
+    let idNumberType;
     req.checkBody('firstName', 'Το όνομα είναι απαραίτητο.').notEmpty();
     if (req.body.firstName) {
         req.checkBody('firstName', 'Το όνομα μπορεί να περιέχει μόνο ελληνικά γράμματα.').isAlpha('el-GR');
@@ -19,8 +20,9 @@ exports.register = (req) => {
         req.checkBody('motherSurname', 'Το επώνυμο μητέρας μπορεί να περιέχει μόνο ελληνικά γράμματα.').isAlpha('el-GR');
         req.checkBody('motherSurname', 'Το επώνυμο μητέρας πρέπει να γραφτεί με κεφαλαία γράμματα.').isUppercase('el-GR');
     }
-    req.checkBody('idNumber', 'Ο ΑΜ/ΑΜΚΑ είναι απαραίτητος.').notEmpty();
-    if (req.body.idNumber) req.checkBody('idNumber', 'Ο ΑΜ/ΑΜΚΑ μπορεί να περιέχει μόνο αριθμούς.').isNumeric();
+    if (req.body.userType == 'Φοιτητής') idNumberType = 'ΑΜ'; else idNumberType = 'ΑΜΚΑ'
+    req.checkBody('idNumber', `Ο ${idNumberType} είναι απαραίτητος.`).notEmpty();
+    if (req.body.idNumber) req.checkBody('idNumber', `Ο ${idNumberType} μπορεί να περιέχει μόνο αριθμούς.`).isNumeric();
     req.checkBody('year', 'Το έτος είναι απαραίτητο.').notEmpty();
     if (req.body.year) {
         req.checkBody('year', 'Το έτος πρέπει να είναι ακέραιος αριθμός.').isInt();
@@ -32,7 +34,7 @@ exports.register = (req) => {
         req.checkBody('username', 'Το username μπορεί να περιέχει μόνο πεζά γράμματα').isLowercase();
     }
     req.checkBody('userType', 'Ο τύπος χρήστη είναι απαραίτητος. Χρησιμοποιείστε τα κουμπιά στο πάνω μέρος της φόρμας.').notEmpty();
-    if (req.body.userType) req.checkBody('userType', 'Ο τύπος χρήστη δεν είναι έγκυρος. Χρησιμοποιείστε τα κουμπιά στο πάνω μέρος της φόρμας.').isIn(['Φοιτητής', 'Εργαζόμενος', 'Διαχειριστής']);
+    if (req.body.userType) req.checkBody('userType', 'Ο τύπος χρήστη δεν είναι έγκυρος. Χρησιμοποιείστε τα κουμπιά στο πάνω μέρος της φόρμας.').isIn(['Φοιτητής', 'Εργαζόμενος']);
     req.checkBody('password', 'Ο κωδικός πρόσβασης είναι απαραίτητος.').notEmpty();
     req.checkBody('password2', 'Η επαλήθευση κωδικού είναι απαραίτητη.').notEmpty();
     if (req.body.password && req.body.password2) req.checkBody('password2', 'Οι κωδικοί δεν ταιριάζουν.').equals(req.body.password);

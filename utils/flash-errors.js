@@ -3,14 +3,22 @@ exports.valid = (req, res, result, redirect) => {
         req.flash('error', error.msg); 
         req.flash('errorParam', error.param);
     });
-    req.flash('data', req.body)
+    req.flash('data', req.body);
     res.redirect(redirect);
 }
 
 exports.regUser = (req, res, err) => {
-    if (err.name === 'MongoError' && err.code === 11000) req.flash('error', 'Υπάρχει κάτι διπλό.');
+    if (err.name === 'MongoError' && err.code === 11000) {
+        for (key in err.keyPattern) {
+            req.flash('errorParam', key);
+            if (key == 'idNumber' && req.body.userType == 'Φοιτητής') key = 'ΑΜ';
+            if (key == 'idNumber' && req.body.userType == 'Εργαζόμενος') key = 'ΑΜΚΑ';
+            req.flash('error', `Υποβάλατε ${key} που χρησιμοποιείται ήδη. Παρακαλώ επιλέξτε διαφορετικό.`);   
+        }
+    }
     else req.flash('error', `Σφάλμα κατά την εγγραφή.\
     Αν το πρόβλημα επιμένει, επικοινωνείστε με κάποιον υπεύθυνο. ${err}`);
+    req.flash('data', req.body)
     res.redirect('/users/register');
 }
 

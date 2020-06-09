@@ -76,8 +76,8 @@ exports.cardAccess = function (user) {
     }
 }
 
-exports.checkFormVisibility = (arr) => {
-    if (arr) return;
+exports.checkFormVisibility = (arr1, arr2) => {
+    if (arr1 || arr2) return;
     else return 'display: none;';
 }
 
@@ -85,4 +85,12 @@ exports.checkDeptValue = (arr, arrPos) => {
     if (!arr) return;
     if (arr[arrPos] !== '') return arr[arrPos];
     else return false;
+}
+
+exports.userIsAdmin = function (userType) {
+    if (userType === 'admin') {
+        return true;
+    } else {
+        return false;
+    }
 }

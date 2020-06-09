@@ -26,12 +26,9 @@ exports.editedAnncmnt = (req) => {
 
 exports.createUser = (req) => {
     let userType, department, damage;
-    if (req.body.userType == 'Φοιτητής') userType = 'student';
-    else userType = 'pending';
-    if (userType == 'student') department = req.body.department[0];
-    else department = req.body.department[1];
-    if (userType == 'student') damage = 0;
-    else damage = -1;
+    if (req.body.userType == 'Φοιτητής') userType = 'student'; else userType = 'pending';
+    if (userType == 'student') department = req.body.department[0]; else department = req.body.department[1];
+    if (userType == 'student') damage = 0; else damage = -1;
     return new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,

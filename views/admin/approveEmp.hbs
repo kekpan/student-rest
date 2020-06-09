@@ -1,0 +1,11 @@
+<div class="container mt-3">
+    {{> alerts}}
+    {{#if (userIsAdmin user.userType)}}
+        <h1>Αιτήσεις για λογαριασμό υπαλλήλου προς έγκριση</h1>
+        <ul>
+            {{#each employees}}
+                <li>{{username}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</div>

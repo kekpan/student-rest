@@ -12,6 +12,7 @@ const path = require('path');
 const cards = require('./routes/cards-route');
 const schedule = require('./routes/schedule-route');
 const anncmnts = require('./routes/anncmnts-route');
+const admin = require('./routes/admin-route');
 const home = require('./routes/home-route');
 const users = require('./routes/users-route');
 const helpers = require('./services/helpers');
@@ -81,6 +82,7 @@ app.use('/users', users);
 app.use('/anncmnts', anncmnts);
 app.use('/card', cards);
 app.use('/schedule', schedule);
+app.use('/admin', admin);
 
 
 // Export module
