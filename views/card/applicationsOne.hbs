@@ -16,9 +16,9 @@
         <div class="col-md-8 mb-4">
             <h1>H Αίτηση του {{student.lastName}}</h1>
             <ul class="list-group">
-                <li class="list-group-item"><a download={{joinStr 'Πάσο_' student.idNumber}} href={{imagePath idCard}}>Φοιτητική ταυτότητα</a></li>
-                <li class="list-group-item"><a download={{joinStr 'Φορολογική_' student.idNumber}} href={{imagePath tax}}>Φορολογική δήλωση</a></li>
-                <li class="list-group-item"><a download={{joinStr 'Φωτογραφία_' student.idNumber}} href={{imagePath photo}}>Φωτογραφία</a></li>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Πάσο_' student.idNumber}} href={{imagePath idCard}}>Φοιτητική ταυτότητα</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Φορολογική_' student.idNumber}} href={{imagePath tax}}>Φορολογική δήλωση</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Φωτογραφία_' student.idNumber}} href={{imagePath photo}}>Φωτογραφία</a>
             </ul>
             <form method="post">
                 <div class="form-group mt-3">

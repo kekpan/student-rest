@@ -76,6 +76,14 @@ exports.cardAccess = function (user) {
     }
 }
 
+exports.userIsCook = function (user) {
+    if (user.department === 'Προσωπικό Κουζίνας' && user.userType !== 'pending') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 exports.checkFormVisibility = (arr1, arr2) => {
     if (arr1 || arr2) return;
     else return 'display: none;';

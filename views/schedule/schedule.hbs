@@ -1,7 +1,9 @@
 <div class="container">
     <h1>Πρόγραμμα φαγητού</h1>
-    {{#if (userIsSec user.userType user.department)}}
+    {{#if user}}
+    {{#if (userIsCook user)}}
     <hr><a href="/schedule/edit" class="btn mb-3">Επεξεργασία</a>
+    {{/if}}
     {{/if}}
     <table class="table table-striped">
         <thead>

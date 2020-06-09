@@ -13,3 +13,8 @@ exports.ensureStud = (req, res, next) => {
     if (req.user.userType === 'student') return next();
     res.redirect('/');
 }
+
+exports.ensureCook = (req, res, next) => {
+    if (req.user.userType !== 'pending' && req.user.department === 'Προσωπικό Κουζίνας') return next();
+    res.redirect('/');
+}
