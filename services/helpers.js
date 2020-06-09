@@ -29,12 +29,12 @@ exports.slice = (str) => {
     else return str.slice(0, 200).concat('...');
 }
 
-exports.checkValid = (arr, inputName) => {
+exports.checkIfValid = (arr, inputName) => {
     if (!arr) return;
     if (arr.includes(inputName)) return 'border border-danger';
 }
 
-exports.checkDeptDisplay = (data, compare) => {
+exports.checkDisplay = (data, compare) => {
     if (data == compare) return;
     else return 'display: none;';
 }
@@ -82,4 +82,15 @@ exports.userIsCook = function (user) {
     } else {
         return false;
     }
+}
+
+exports.checkFormVisibility = (arr) => {
+    if (arr) return;
+    else return 'display: none;';
+}
+
+exports.checkDeptValue = (arr, arrPos) => {
+    if (!arr) return;
+    if (arr[arrPos] !== '') return arr[arrPos];
+    else return false;
 }
