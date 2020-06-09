@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="images/upatras-logo.png">
+    <title>Εστιατόριο Φοιτητικής Μέριμνας</title>
+</head>
+<body class="m-0 p-0 bgcolor">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="px-2" style='max-width: {{width}};'>
+                <a href="/">
+                    <img class="w-100 mt-5 mb-3 mx-auto d-block" src="images/student-rest-logo.png" style="max-width: 345px;">
+                </a>
+                {{> alerts}}
+                {{{body}}}
+            </div>
+        </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>

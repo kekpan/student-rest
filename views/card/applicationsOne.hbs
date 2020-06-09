@@ -1,0 +1,58 @@
+<div class="container-fluid" style="margin-top:15px">
+    <div class="row">
+        <div class="col-md-2 mb-4" id="sidebar">
+            <ul class="nav nav-pills flex-column text-center">
+                <li class="nav-item">
+                    <a class="nav-link " href="/card" id="sidebar-item">Επισκόπηση</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/card/new" id="sidebar-item">Αίτημα Έκδοσης</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/card/cancel" id="sidebar-item">Αίτημα Ακύρωσης</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 mb-4">
+            <h1>H Αίτηση του {{student.lastName}}</h1>
+            <ul class="list-group">
+                <li class="list-group-item"><a download={{joinStr 'Πάσο_' student.idNumber}} href={{imagePath idCard}}>Φοιτητική ταυτότητα</a></li>
+                <li class="list-group-item"><a download={{joinStr 'Φορολογική_' student.idNumber}} href={{imagePath tax}}>Φορολογική δήλωση</a></li>
+                <li class="list-group-item"><a download={{joinStr 'Φωτογραφία_' student.idNumber}} href={{imagePath photo}}>Φωτογραφία</a></li>
+            </ul>
+            <form method="post">
+                <div class="form-group mt-3">
+                    <label for="idCard">Φοιτητική ταυτότητα </label>
+                    <select class="form-control" id="idCard" name='idCard'>
+                        <option value="1">Έγκυρο</option>
+                        <option value="0">Άκυρο</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="tax">Φορολογική δήλωση </label>
+                    <select class="form-control" id="tax" name='tax'>
+                        <option value="1">Έγκυρο</option>
+                        <option value="0">Άκυρο</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="photo">Φωτογραφία</label>
+                    <select class="form-control" id="photo" name='photo'>
+                        <option value="1">Έγκυρο</option>
+                        <option value="0">Άκυρο</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="">Αιτιολογία απόρριψης</label>
+                    <textarea class="form-control" name="text" disabled>{{application.text}}</textarea>
+                </div>
+                <div class="form-group mt-3 d-inline">
+                    <button class="btn" id="accept-btn" type="submit" name='answer' value="accept">Αποδοχή</button>
+                    <button class="btn" id="decline-btn" type="submit" name='answer' value="decline" disabled>Απόριψη</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="scripts/app-check.js"></script>

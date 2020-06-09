@@ -1,0 +1,69 @@
+<div class="container-fluid" style="margin-top:15px">
+    <div class="row">
+        <div class="col-md-2 mb-4" id="sidebar">
+            {{> cardSidebar}}
+        </div>
+        <div class="col-md-10 mb-4">
+            {{> alerts}}
+            <h1>Αίτημα Έκδοσης</h1>
+            <div class="form-row">
+                <div class="col">
+                    <label for="inputFName">Όνομα</label>
+                    <input type="text" class="form-control" disabled placeholder={{user.firstName}}>
+                </div>
+                <div class="col">
+                    <label for="inputLName">Επώνυμο</label>
+                    <input type="text" class="form-control" disabled placeholder={{user.lastName}}>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="inputFatherName">Όνομα πατρός</label>
+                    <input type="text" class="form-control" disabled placeholder={{user.fatherName}}>
+                </div>
+                <div class="col">
+                    <label for="inputMotherName">Επώνυμο μητέρας</label>
+                    <input type="text" class="form-control" disabled placeholder={{user.motherSurname}}>
+                </div>
+            </div>
+            {{#notSent}}
+            <form method="POST" class="form">
+                <div class="form-group mb-2">
+                    <label class="form-group-label" for="Φοιτητική ταυτότητα">Φοιτητική ταυτότητα</label>
+                    <input type="file" class=" filepond" name="idCard">
+                </div>
+                <div class="form-group mb-2">
+                    <label class="form-group-label" for="Φορολογική δήλωση">Φορολογική δήλωση</label>
+                    <input type="file" class=" filepond" name="tax">
+                </div>
+                <div class="form-group mb-2">
+                    <label class="form-group-label" for="Φωτογραφία">Φωτογραφία <small>(τύπου
+                            ταυτότητας)</small></label>
+                    <input type="file" class=" filepond" name="photo">
+                </div>
+                <button type="submit" class="btn btn-primary">Υποβολή</button>
+            </form>
+            {{/notSent}}
+            {{#unless notSent}}
+            {{#if (ifEqual application.status '0')}}
+            <div class="alert alert-warning mb-3 p-2" role="alert">Η αίτηση σας έχει υποβληθεί επιτυχώς</div>
+            {{/if}}
+            {{#if (ifEqual application.status '0')}}
+            <h3>Τα πιστοποιητικά που καταθέσατε</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><a download={{joinStr 'Πάσο_' user.idNumber}} href={{imagePath idCard}}>Φοιτητική ταυτότητα</a></li>
+                <li class="list-group-item"><a download={{joinStr 'Φορολογική_' user.idNumber}} href={{imagePath tax}}>Φορολογική δήλωση</a></li>
+                <li class="list-group-item"><a download={{joinStr 'Φωτογραφία_' user.idNumber}} href={{imagePath photo}}>Φωτογραφία</a></li>
+            </ul>
+            {{/if}}
+            {{#if (ifEqual application.status '1')}}
+            <div class="alert alert-success mb-3 p-2" role="alert">Η αίτηση σας έχει εγκριθεί</div>
+            {{/if}}
+            {{#if (ifEqual application.status '2')}}
+            <div class="alert alert-danger mb-3 p-2" role="alert">Η αίτηση σας έχει απορριφθεί. Παρακαλώ ενημερώστε τα δικαιολογητικά σας. Λόγος απόρριψης: {{application.text}}</div>
+            {{> cardUpdateForm}}
+            {{/if}}
+            {{/unless}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<form method="POST" action="/users/login" class="mb-5">
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" class="form-control {{checkValid errorsParam 'username'}}" name="username" placeholder="Όνομα Χρήστη" value="{{data.username}}"> 
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <input type="password" class="form-control {{checkValid errorsParam 'password'}}" name="password" placeholder="Κωδικός Πρόσβασης">
+    </div>
+  </div>
+  <button type="submit" class="btn w-100">Σύνδεση</button>
+</form>

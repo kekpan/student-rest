@@ -1,0 +1,16 @@
+<div class="container mt-3">
+    <h1>Ανακοινώσεις</h1>
+    {{#if (userIsSec user.userType user.department)}}
+        <hr><a href="/anncmnts/add" class="btn mb-3">Νέα Ανακοίνωση</a>
+    {{/if}}
+    {{> alerts}}
+    {{#each anncmnts}}
+        <div class="card my-3 w-100" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{title}} &bull; {{dmyFormat modifiedAt}}</h5>
+                <p class="card-text">{{slice body}}</p>
+                <a href={{joinStr '/anncmnts/' id}} class="btn">Διαβάστε περισσότερα</a>
+            </div>
+        </div>
+    {{/each}}
+</div>

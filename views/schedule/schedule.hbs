@@ -1,0 +1,60 @@
+<div class="container">
+    <h1>Πρόγραμμα φαγητού</h1>
+    {{#if (userIsSec user.userType user.department)}}
+    <hr><a href="/schedule/edit" class="btn mb-3">Επεξεργασία</a>
+    {{/if}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Ημέρα</th>
+                <th scope="col">Πρωινό</th>
+                <th scope="col">Μεσημεριανό</th>
+                <th scope="col">Βραδινό</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Δευτέρα</th>
+                <td>{{schedule.monday.breakfast}}</td>
+                <td>{{schedule.monday.lunch}}</td>
+                <td>{{schedule.monday.dinner}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Τρίτη</th>
+                <td>{{schedule.tuesday.breakfast}}</td>
+                <td>{{schedule.tuesday.lunch}}</td>
+                <td>{{schedule.tuesday.dinner}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Τετάρτη</th>
+                <td>{{schedule.wednesday.breakfast}}</td>
+                <td>{{schedule.wednesday.lunch}}</td>
+                <td>{{schedule.wednesday.dinner}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Πέμπτη</th>
+                <td>{{schedule.thursday.breakfast}}</td>
+                <td>{{schedule.thursday.lunch}}</td>
+                <td>{{schedule.thursday.dinner}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Παρασκευή</th>
+                <td>{{schedule.friday.breakfast}}</td>
+                <td>{{schedule.friday.lunch}}</td>
+                <td>{{schedule.friday.dinner}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Σάββατο</th>
+                <td>{{schedule.saturday.breakfast}}</td>
+                <td>{{schedule.saturday.lunch}}</td>
+                <td>{{schedule.saturday.dinner}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Κυριακή</th>
+                <td>{{schedule.sunday.breakfast}}</td>
+                <td>{{schedule.sunday.lunch}}</td>
+                <td>{{schedule.sunday.dinner}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="px-2">
+            {{> alerts}}
+            <form method="POST" action="/anncmnts/add" class="mt-2">
+                <div class="form-group">
+                    <label>Τίτλος</label>
+                    <input type="text" class="form-control" name="title">
+                </div>
+                <div class="form-group">
+                    <label>Σώμα</label>
+                    <textarea cols="50" rows="4" class="form-control" name="body"></textarea>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn mt-3">Προσθήκη</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

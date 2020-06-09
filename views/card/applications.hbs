@@ -1,0 +1,27 @@
+<div class="container-fluid" style="margin-top:15px">
+    <div class="row">
+        <div class="col-md-2 mb-4" id="sidebar">
+            {{> cardSidebar}}
+        </div>
+        <div class="col-md-10 mb-4">
+            <h1>Ολες οι αιτήσεις προς εγκριση</h1>
+            {{#each applications}}
+                {{#if (ifEqual status '0')}}
+                <a href={{makeLink '/card/check-' userId}}>{{lastName}}</a>
+                {{/if}}
+            {{/each}}
+            <h1>Ολες οι αιτήσεις που εγκριθηκαν </h1>
+            {{#each applications}}
+                {{#if (ifEqual status '1')}}
+                <a href={{makeLink '/card/check-' userId}}>{{lastName}}</a>
+                {{/if}}
+            {{/each}}
+            <h1>Ολες οι αιτήσεις που αποριφθηκαν</h1>
+            {{#each applications}}
+                {{#if (ifEqual status '2')}}
+                <a href={{makeLink '/card/check-' userId}}>{{lastName}}</a>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>

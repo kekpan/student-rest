@@ -1,0 +1,48 @@
+<div class="container">
+    {{> alerts}}
+
+    <article class="container mt-3">
+        <div id="alert" class="alert alert-danger my-3 p-2" role="alert" style="display: none;"></div>
+        <h1>{{anncmnt.title}}</h1>
+        {{!-- <p style="font-size: 0.9em;"><em>Δημοσιεύτηκε {{dmyTimeFormat anncmnt.createdAt}}, από {{joinStrSp author.lastName author.firstName}}</em></p> --}}
+        {{#if anncmnt.modified}}
+            <p style="font-size: 0.9em;"><em>Τελευταία τροποποίηση {{dmyTimeFormat anncmnt.modifiedAt}}</em></p>
+        {{/if}}
+        <p class="my-2 p-3 bg-light">{{anncmnt.body}}</p>
+    </article>
+
+    {{#if edit}}
+        <form method="POST" action={{joinStr '/anncmnts/' anncmnt.id}} class="mt-2" style="display: none;">
+            <div class="form-group">
+                <label>Τίτλος</label>
+                <input type="text" class="form-control" name="title" value="{{#if data.tile}}{{data.tile}}{{else}}{{anncmnt.title}}{{/if}}">
+            </div>
+            <div class="form-group">
+                <label>Σώμα</label>
+                <textarea cols="50" rows="4" class="form-control" name="body">{{anncmnt.body}}</textarea>
+            </div>
+            <div id="edit-btns" class="container mt-3" style="display: none;">
+                <button id="edit-confirm" type="submit" class="btn">Υποβολή</button>
+                <button id="trigger-editCan" type="button" class="btn">Ακύρωση</button>
+            </div>
+            <div id="editCan-btns" class="container mt-3" style="display: none;">
+                <div>Είστε σίγουροι ότι θέλετε να συνεχίσετε; Οι αλλαγές σας δε θα αποθηκευτούν.</div>
+                <button id="editCan-confirm" type="button" class="btn btn-danger">Ναι</button>
+                <button id="editCan-cancel" type="button" class="btn">Πίσω στην επεξεργασία</button>
+            </div>
+        </form>
+        <div id="basic-btns" class="container mt-3">
+            <button id="trigger-edit" class="btn">Επεξεργασία</button>
+            <button id="trigger-del" class="btn btn-danger">Διαγραφή</button>
+        </div>
+        <div id="del-btns" class="container mt-3" style="display: none;">
+            <div>Είστε σίγουροι ότι θέλετε να διαγράψετε την ανακοίνωση; Η ενέργεια είναι μη αναστρέψιμη.</div>
+            <button id="del-confirm" class="btn btn-danger">Ναι</button>
+            <button id="del-cancel" class="btn">Ακύρωση</button>
+        </div>
+    {{/if}}
+
+    <p id="id" hidden>{{anncmnt.id}}</p>
+</div>
+
+<script src="scripts/anncmnt-btns.js" defer></script>

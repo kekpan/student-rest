@@ -1,0 +1,19 @@
+{{#if (userIsSec user.userType user.department)}}
+<ul class="nav nav-pills flex-column text-center">
+    <li class="nav-item">
+        <a class="nav-link " href="/card/all" id="sidebar-item">Αιτήσεις</a>
+    </li>
+</ul>
+{{else}}
+<ul class="nav nav-pills flex-column text-center">
+    <li class="nav-item">
+        <a class="nav-link " href="/card" id="sidebar-item">Επισκόπηση</a>
+    </li>
+    <li class="nav-item ">
+        <a class="nav-link" href="/card/new" id="sidebar-item">Αίτημα Έκδοσης</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/card/cancel" id="sidebar-item">Αίτημα Ακύρωσης</a>
+    </li>
+</ul>
+{{/if}}

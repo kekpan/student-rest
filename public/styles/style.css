@@ -1,0 +1,55 @@
+/* Embed "Open Sans Condensed" and "Source Sans Pro" from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 100%;
+}
+
+.btn {
+    background-color: #d7a760;
+    color: white;
+}
+
+.navbar {
+    background-color: #803136;
+    border-bottom: 3px solid #d7a760;
+}
+
+.bgcolor {
+    background-color: #bfd1db;
+}
+
+/* Chavales additions /
+
+/ #sidebar {
+    background-color: gray;
+    border-right: 3px solid #803136;
+} */
+
+#sidebar-item {
+    color: #803136;
+}
+
+#sidebar-item:hover {
+    background-color: #d7a760;
+    color: white;
+}
+
+#sidebar .nav-pills {
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+.btn {
+    border-color: black;
+    color: black;
+}
+
+.btn:hover{
+    border-color: black;
+    background-color: #d7a760;
+}
+ body{
+     background-color: gray;
+ }

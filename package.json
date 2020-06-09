@@ -1,0 +1,39 @@
+{
+  "name": "student-rest",
+  "version": "1.0.0",
+  "description": "Εφαρμογή Υποστήριξης Εστιατορίου Φοιτητικής Μέριμνας",
+  "main": "server.js",
+  "scripts": {
+    "debug": "nodemon --inspect server",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npanag/student-rest.git"
+  },
+  "author": "Nikos Panagiotopoulos and Thomas Chavales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npanag/student-rest/issues"
+  },
+  "homepage": "https://github.com/npanag/student-rest#readme",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-flash-messages": "^0.1.1",
+    "express-handlebars": "^4.0.4",
+    "express-mongo-sanitize": "^2.0.0",
+    "express-session": "^1.17.1",
+    "express-validator": "^5.3.1",
+    "helmet": "^3.22.0",
+    "mongoose": "^5.9.16",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

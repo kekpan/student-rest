@@ -1,0 +1,22 @@
+<form method="POST" action="/card/update" class="form">
+    {{#unless application.idCard}}
+    <div class="form-group mb-2">
+        <label class="form-group-label" for="Φοιτητική ταυτότητα">Φοιτητική ταυτότητα</label>
+        <input type="file" class=" filepond" name="idCard">
+    </div>
+    {{/unless}}
+    {{#unless application.tax}}
+    <div class="form-group mb-2">
+        <label class="form-group-label" for="Φορολογική δήλωση">Φορολογική δήλωση</label>
+        <input type="file" class=" filepond" name="tax">
+    </div>
+    {{/unless}}
+    {{#unless application.photo}}
+    <div class="form-group mb-2">
+        <label class="form-group-label" for="Φωτογραφία">Φωτογραφία <small>(τύπου
+                ταυτότητας)</small></label>
+        <input type="file" class=" filepond" name="photo">
+    </div>
+    {{/unless}}
+    <button type="submit" class="btn btn-primary">Υποβολή</button>
+</form>

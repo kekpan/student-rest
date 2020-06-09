@@ -1,0 +1,60 @@
+<div class="container">
+    <h1>Πρόγραμμα φαγητού</h1>
+    <form method="POST">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Ημέρα</th>
+                    <th scope="col">Πρωινό</th>
+                    <th scope="col">Μεσημεριανό</th>
+                    <th scope="col">Βραδινό</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Δευτέρα</th>
+                    <td><input type="text" name="monday" class="form-control" value="{{schedule.monday.breakfast}}"></td>
+                    <td><input type="text" name="monday" class="form-control" value="{{schedule.monday.lunch}}"></td>
+                    <td><input type="text" name="monday" class="form-control" value="{{schedule.monday.dinner}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Τρίτη</th>
+                    <td><input type="text" name="tuesday" class="form-control" value="{{schedule.tuesday.breakfast}}"></td>
+                    <td><input type="text" name="tuesday" class="form-control" value="{{schedule.tuesday.lunch}}"></td>
+                    <td><input type="text" name="tuesday" class="form-control" value="{{schedule.tuesday.dinner}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Τετάρτη</th>
+                    <td><input type="text" name="wednesday" class="form-control" value="{{schedule.wednesday.breakfast}}"></td>
+                    <td><input type="text" name="wednesday" class="form-control" value="{{schedule.wednesday.lunch}}"></td>
+                    <td><input type="text" name="wednesday" class="form-control" value="{{schedule.wednesday.dinner}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Πέμπτη</th>
+                    <td><input type="text" name="thursday" class="form-control" value="{{schedule.thursday.breakfast}}"></td>
+                    <td><input type="text" name="thursday" class="form-control" value="{{schedule.thursday.lunch}}"></td>
+                    <td><input type="text" name="thursday" class="form-control" value="{{schedule.thursday.dinner}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Παρασκευή</th>
+                    <td><input type="text" name="friday" class="form-control" value="{{schedule.friday.breakfast}}"></td>
+                    <td><input type="text" name="friday" class="form-control" value="{{schedule.friday.lunch}}"></td>
+                    <td><input type="text" name="friday" class="form-control" value="{{schedule.friday.dinner}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Σάββατο</th>
+                    <td><input type="text" name="saturday" class="form-control" value="{{schedule.saturday.breakfast}}"></td>
+                    <td><input type="text" name="saturday" class="form-control" value="{{schedule.saturday.lunch}}"></td>
+                    <td><input type="text" name="saturday" class="form-control" value="{{schedule.saturday.dinner}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Κυριακή</th>
+                    <td><input type="text" name="sunday" class="form-control" value="{{schedule.sunday.breakfast}}"></td>
+                    <td><input type="text" name="sunday" class="form-control" value="{{schedule.sunday.lunch}}"></td>
+                    <td><input type="text" name="sunday" class="form-control" value="{{schedule.sunday.dinner}}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn mt-3">Αποστολή</button>
+    </form>
+</div>
