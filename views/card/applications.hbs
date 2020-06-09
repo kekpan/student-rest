@@ -4,24 +4,33 @@
             {{> cardSidebar}}
         </div>
         <div class="col-md-10 mb-4">
-            <h1>Ολες οι αιτήσεις προς εγκριση</h1>
-            {{#each applications}}
+            <h1>Ολες οι αιτήσεις προς έγκριση</h1>
+            <div class="list-group">
+                {{#each applications}}
                 {{#if (ifEqual status '0')}}
-                <a href={{makeLink '/card/check-' userId}}>{{lastName}}</a>
+                <a href={{makeLink '/card/check-' userId}}
+                    class="list-group-item list-group-item-action">{{lastName}}</a>
                 {{/if}}
-            {{/each}}
-            <h1>Ολες οι αιτήσεις που εγκριθηκαν </h1>
-            {{#each applications}}
+                {{/each}}
+            </div>
+            <h1>Ολες οι αιτήσεις που εγκρίθηκαν </h1>
+            <div class="list-group">
+                {{#each applications}}
                 {{#if (ifEqual status '1')}}
-                <a href={{makeLink '/card/check-' userId}}>{{lastName}}</a>
+                <a href={{makeLink '/card/check-' userId}}
+                    class="list-group-item list-group-item-action">{{lastName}}</a>
                 {{/if}}
-            {{/each}}
-            <h1>Ολες οι αιτήσεις που αποριφθηκαν</h1>
-            {{#each applications}}
+                {{/each}}
+            </div>
+            <h1>Ολες οι αιτήσεις που απορρίφθηκαν</h1>
+            <div class="list-group">
+                {{#each applications}}
                 {{#if (ifEqual status '2')}}
-                <a href={{makeLink '/card/check-' userId}}>{{lastName}}</a>
+                <a href={{makeLink '/card/check-' userId}}
+                    class="list-group-item list-group-item-action">{{lastName}}</a>
                 {{/if}}
-            {{/each}}
+                {{/each}}
+            </div>
         </div>
     </div>
 </div>
