@@ -75,3 +75,11 @@ exports.cardAccess = function (user) {
         return false;
     }
 }
+
+exports.userIsCook = function (user) {
+    if (user.department === 'Προσωπικό Κουζίνας' && user.userType !== 'pending') {
+        return true;
+    } else {
+        return false;
+    }
+}

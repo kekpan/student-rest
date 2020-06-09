@@ -13,9 +13,9 @@ router.use(express.static(path.join(__dirname, '..', 'public')));
 
 router.get('/', scheduleCtrl.schedule_get);
 
-router.get('/edit', scheduleCtrl.scheduleEdit_get);
+router.get('/edit', auth.ensure, auth.ensureCook, scheduleCtrl.scheduleEdit_get);
 
-router.post('/edit', scheduleCtrl.scheduleEdit_post);
+router.post('/edit', auth.ensure, auth.ensureCook, scheduleCtrl.scheduleEdit_post);
 
 
 // Export module
