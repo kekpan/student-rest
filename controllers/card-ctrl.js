@@ -129,9 +129,9 @@ exports.check_post = async (req, res) => {
 }
 
 exports.kek = async (req, res) => {
-    await Photo.deleteOne({ userId: req.user._id });
-    await IdCard.deleteOne({ userId: req.user._id });
-    await Tax.deleteOne({ userId: req.user._id });
-    await Application.deleteOne({ userId: req.user._id });
+    await Photo.deleteMany({  });
+    await IdCard.deleteMany({  });
+    await Tax.deleteMany({  });
+    await Application.deleteMany({  });
     res.redirect('/card/new');
 }

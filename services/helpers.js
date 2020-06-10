@@ -53,7 +53,7 @@ exports.imagePath = function (file) {
 }
 
 exports.userIsSec = function (userType, userDep) {
-    if (userDep === 'Γραμματεία' && userType !== 'pending') {
+    if ((userDep === 'Γραμματεία' && userType !== 'pending') || userType === 'admin') {
         return true;
     } else {
         return false;
@@ -69,7 +69,7 @@ exports.userIsStud = function (userType) {
 }
 
 exports.cardAccess = function (user) {
-    if (user.userType === 'student' || (user.department === 'Γραμματεία' && user.userType !== 'pending')) {
+    if (user.userType === 'student' || user.userType === 'admin' || (user.department === 'Γραμματεία' && user.userType !== 'pending')) {
         return true;
     } else {
         return false;
@@ -77,7 +77,7 @@ exports.cardAccess = function (user) {
 }
 
 exports.userIsCook = function (user) {
-    if (user.department === 'Προσωπικό Κουζίνας' && user.userType !== 'pending') {
+    if ((user.department === 'Προσωπικό Κουζίνας' && user.userType !== 'pending') || user.userType === 'admin') {
         return true;
     } else {
         return false;

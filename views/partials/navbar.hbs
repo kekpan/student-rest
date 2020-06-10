@@ -18,6 +18,11 @@
                 <a class="nav-link" href="/schedule">Πρόγραμμα φαγητού</a>
             </li>
             {{#if user}}
+            {{#if (userIsAdmin user.userType)}}
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/approve">Χρήστες</a>
+            </li>
+            {{/if}}
             {{#if (cardAccess user)}}
             {{#if (userIsStud user.userType)}}
             <li class="nav-item">

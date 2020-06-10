@@ -5,6 +5,7 @@ exports.ensure = (req, res, next) => {
 }
 
 exports.ensureSec = (req, res, next) => {
+    if (req.user.userType === 'admin') return next();
     if (req.user.userType !== 'pending' && req.user.department === 'Γραμματεία') return next();
     res.redirect('/');
 }
@@ -15,6 +16,12 @@ exports.ensureStud = (req, res, next) => {
 }
 
 exports.ensureCook = (req, res, next) => {
+    if (req.user.userType === 'admin') return next();
     if (req.user.userType !== 'pending' && req.user.department === 'Προσωπικό Κουζίνας') return next();
+    res.redirect('/');
+}
+
+exports.ensureAdmin = (req, res, next) => {
+    if (req.user.userType === 'admin') return next();
     res.redirect('/');
 }
