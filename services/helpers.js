@@ -89,6 +89,11 @@ exports.checkFormVisibility = (arr1, arr2) => {
     else return 'display: none;';
 }
 
+exports.checkArtclVisibility = (arr1, arr2) => {
+    if (arr1 || arr2) return 'display: none;';
+    else return;
+}
+
 exports.checkDeptValue = (arr, arrPos) => {
     if (!arr) return;
     if (arr[arrPos] !== '') return arr[arrPos];

@@ -1,8 +1,7 @@
 <div class="container">
     {{> alerts}}
 
-    <article class="container mt-3">
-        <div id="alert" class="alert alert-danger my-3 p-2" role="alert" style="display: none;"></div>
+    <article class="container mt-3" style="{{checkArtclVisibility data errors}}">
         <h1>{{anncmnt.title}}</h1>
         {{!-- <p style="font-size: 0.9em;"><em>Δημοσιεύτηκε {{dmyTimeFormat anncmnt.createdAt}}, από {{joinStrSp author.lastName author.firstName}}</em></p> --}}
         {{#if anncmnt.modified}}
@@ -12,7 +11,7 @@
     </article>
 
     {{#if edit}}
-        <form method="POST" action={{joinStr '/anncmnts/' anncmnt.id}} class="mt-2" style="display: none;">
+        <form method="POST" action={{joinStr '/anncmnts/' anncmnt.id}} class="mt-2" style="{{checkFormVisibility data errors}}">
             <div class="form-group">
                 <label>Τίτλος</label>
                 <input type="text" class="form-control" name="title" value="{{#if data.tile}}{{data.tile}}{{else}}{{anncmnt.title}}{{/if}}">
@@ -21,7 +20,7 @@
                 <label>Σώμα</label>
                 <textarea cols="50" rows="4" class="form-control" name="body">{{anncmnt.body}}</textarea>
             </div>
-            <div id="edit-btns" class="container mt-3" style="display: none;">
+            <div id="edit-btns" class="container mt-3" style="{{checkFormVisibility data errors}}">
                 <button id="edit-confirm" type="submit" class="btn">Υποβολή</button>
                 <button id="trigger-editCan" type="button" class="btn">Ακύρωση</button>
             </div>
@@ -31,7 +30,7 @@
                 <button id="editCan-cancel" type="button" class="btn">Πίσω στην επεξεργασία</button>
             </div>
         </form>
-        <div id="basic-btns" class="container mt-3">
+        <div id="basic-btns" class="container mt-3" style="{{checkArtclVisibility data errors}}">
             <button id="trigger-edit" class="btn">Επεξεργασία</button>
             <button id="trigger-del" class="btn btn-danger">Διαγραφή</button>
         </div>
