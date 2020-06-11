@@ -1,180 +1,90 @@
 <div class="container">
+    <h1>Προφίλ</h1>
     {{> alerts}}
-    <form method="POST" action="/users/register" id="form" style="{{checkFormVisibility data errors}}">
+    <div class="container">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="firstName">Όνομα *</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'firstName'}}" id="firstName"
-                    name="firstName" value="{{data.firstName}}">
+                <label for="firstName">Όνομα </label>
+                <input type="text" class="form-control" id="firstName" name="firstName" value="{{data.firstName}}">
             </div>
             <div class="form-group col-md-6">
-                <label for="lastName">Επώνυμο *</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'lastName'}}" id="lastName"
-                    name="lastName" value="{{data.lastName}}">
+                <label for="lastName">Επώνυμο </label>
+                <input type="text" class="form-control" id="lastName" name="lastName" value="{{data.lastName}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="fatherName">Όνομα Πατέρα *</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'fatherName'}}" id="fatherName"
-                    name="fatherName" value="{{data.fatherName}}">
+                <label for="fatherName">Όνομα Πατέρα </label>
+                <input type="text" class="form-control" id="fatherName" name="fatherName" value="{{data.fatherName}}">
             </div>
             <div class="form-group col-md-6">
-                <label for="motherSurname">Επώνυμο Μητέρας *</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'motherSurname'}}" id="motherSurname"
-                    name="motherSurname" value="{{data.motherSurname}}">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="idNumber" id="label-idNumber-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">ΑΜ
-                    Φοιτητή *</label>
-                <label for="idNumber" id="label-idNumber-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">ΑΜΚΑ
-                    *</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'idNumber'}}" id="idNumber"
-                    name="idNumber" value="{{data.idNumber}}">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="year" id="label-year-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">Έτος Α' Εγγραφής
-                    *</label>
-                <label for="year" id="label-year-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">Έτος Γέννησης
-                    *</label>
-                <input type="number" class="form-control {{checkIfValid errorsParam 'year'}}" id="year" name="year"
-                    value="{{data.year}}">
+                <label for="motherSurname">Επώνυμο Μητέρας </label>
+                <input type="text" class="form-control" id="motherSurname" name="motherSurname"
+                    value="{{data.motherSurname}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="username">Username *</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'username'}}" id="username"
-                    name="username" value="{{data.username}}">
+                <label for="idNumber" id="label-idNumber-std">
+                    {{#if (userIsStud data.userType)}}
+                    ΑΜ Φοιτητή
+                    {{else}}
+                    ΑΜΚΑ
+                    {{/if}}</label>
+                <input type="text" class="form-control" id="idNumber" name="idNumber" value="{{data.idNumber}}">
             </div>
             <div class="form-group col-md-6">
-                <label for="userType">Τύπος Χρήστη *</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'userType'}}" id="userType"
-                    name="userType" value="{{data.userType}}" readonly>
+                <label for="year" id="label-year-std">Έτος Α' Εγγραφής </label>
+                <input type="number" class="form-control" id="year" name="year" value="{{data.year}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="password">Κωδικός Πρόσβασης *</label>
-                <input type="password" class="form-control {{checkIfValid errorsParam 'password'}}" id="password"
-                    name="password">
+                <label for="username">Username </label>
+                <input type="text" class="form-control" id="username" name="username" value="{{data.username}}">
             </div>
             <div class="form-group col-md-6">
-                <label for="password2">Επαλήθευση Κωδικού *</label>
-                <input type="password" class="form-control {{checkIfValid errorsParam 'password2'}}" id="password2"
-                    name="password2">
+                <label for="userType">Τύπος Χρήστη </label>
+                <input type="text" class="form-control" id="userType" name="userType" {{#if (userIsStud data.userType)}}
+                    value="Φοιτητής" {{else}} value="Υπάλληλος" {{/if}}>
             </div>
         </div>
         <div class="form-group">
-            <label for="department">Τμήμα *</label>
-            <select class="form-control {{checkIfValid errorsParam 'department'}}" id="department-std" name="department"
-                style="{{checkDisplay data.userType 'Φοιτητής'}}">
-                {{#if (checkDeptValue data.department 0)}}
-                <option>{{checkDeptValue data.department 0}}</option>
-                {{else}}
-                <option value="">-- Παρακαλώ επιλέξτε Τμήμα --</option>
-                {{/if}}
-                <optgroup label="Σχολή Ανθρωπιστικών και Κοινωνικών Επιστημών">
-                    <option>Τμήμα Επιστημών της Εκπαίδευσης και της Αγωγής στην Προσχολική Ηλικία</option>
-                    <option>Τμήμα Θεατρικών Σπουδών</option>
-                    <option>Τμήμα Επιστημών της Εκπαίδευσης και Κοινωνικής Εργασίας</option>
-                    <option>Τμήμα Φιλολογίας</option>
-                    <option>Τμήμα Φιλοσοφίας</option>
-                    <option>Τμήμα Ιστορίας-Αρχαιολογίας</option>
-                    <option>Τμήμα Μουσειολογίας</option>
-                </optgroup>
-                <optgroup label="Σχολή Γεωπονικών Επιστημών">
-                    <option>Τμήμα Ζωικής Παραγωγής Αλιείας και Υδατοκαλλιεργειών</option>
-                    <option>Τμήμα Επιστήμης Βιοσυστημάτων και Γεωργικής Μηχανικής</option>
-                    <option>Τμήμα Επιστήμης και Τεχνολογίας Τροφίμων</option>
-                    <option>Τμήμα Γεωπονίας</option>
-                    <option>Τμήμα Επιστήμης Φυτικής Παραγωγής</option>
-                    <option>Τμήμα Γεωργικής Βιοτεχνολογίας</option>
-                </optgroup>
-                <optgroup label="Σχολή Επιστημών Αποκατάστασης Υγείας">
-                    <option>Τμήμα Νοσηλευτικής</option>
-                    <option>Τμήμα Φυσικοθεραπείας</option>
-                    <option>Τμήμα Λογοθεραπείας</option>
-                </optgroup>
-                <optgroup label="Σχολή Επιστημών Υγείας">
-                    <option>Τμήμα Ιατρικής</option>
-                    <option>Τμήμα Φαρμακευτικής</option>
-                </optgroup>
-                <optgroup label="Σχολή Επιστημών Φυσικής Αγωγής και Αθλητισμού">
-                    <option>Τμήμα Επιστημών Φυσικής Αγωγής και Αθλητισμού</option>
-                </optgroup>
-                <optgroup label="Σχολή Θετικών Επιστημών">
-                    <option>Τμήμα Βιολογίας</option>
-                    <option>Τμήμα Γεωλογίας</option>
-                    <option>Τμήμα Επιστήμης των Υλικών</option>
-                    <option>Τμήμα Μαθηματικών</option>
-                    <option>Τμήμα Φυσικής</option>
-                    <option>Τμήμα Χημείας</option>
-                </optgroup>
-                <optgroup label="Σχολή Νομικών Επιστημών">
-                    <option>Τμήμα Νομικής</option>
-                </optgroup>
-                <optgroup label="Σχολή Οικονομικών Επιστημών και Διοίκησης Επιχειρήσεων">
-                    <option>Τμήμα Διοίκησης Επιχειρήσεων</option>
-                    <option>Τμήμα Διοίκησης Επιχειρήσεων Αγροτικών Προϊόντων και Τροφίμων</option>
-                    <option>Τμήμα Οικονομικών Επιστημών</option>
-                    <option>Τμήμα Διοίκησης Τουρισμού</option>
-                    <option>Τμήμα Διοικητικής Επιστήμης και Τεχνολογίας</option>
-                </optgroup>
-                <optgroup label="Σχολή Πολυτεχνική">
-                    <option>Τμήμα Αρχιτεκτόνων Μηχανικών</option>
-                    <option>Τμήμα Μηχανικών Περιβάλλοντος</option>
-                    <option>Τμήμα Ηλεκτρολόγων Μηχανικών και Τεχνολογίας Υπολογιστών</option>
-                    <option>Τμήμα Μηχανικών Η/Υ και Πληροφορικής</option>
-                    <option>Τμήμα Μηχανολόγων και Αεροναυπηγών Μηχανικών</option>
-                    <option>Τμήμα Πολιτικών Μηχανικών</option>
-                    <option>Τμήμα Χημικών Μηχανικών</option>
-                </optgroup>
-            </select>
-            <select class="form-control {{checkIfValid errorsParam 'department'}}" id="department-emp" name="department"
-                style="{{checkDisplay data.userType 'Εργαζόμενος'}}">
-                {{#if (checkDeptValue data.department 1)}}
-                <option>{{checkDeptValue data.department 1}}</option>
-                {{else}}
-                <option value="">-- Παρακαλώ επιλέξτε Τμήμα --</option>
-                {{/if}}
-                <option>Γραμματεία</option>
-                <option>Λογιστήριο</option>
-                <option>Προσωπικό Κουζίνας</option>
-            </select>
+            <label for="department">Τμήμα </label>
+            <input type="text" class="form-control" id="userDep" name="userType" value="{{data.department}}" readonly>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">Email</label>
-                <input type="email" class="form-control {{checkIfValid errorsParam 'email'}}" id="email" name="email"
-                    value="{{data.email}}">
+                <input type="email" class="form-control" id="email" name="email" value="{{data.email}}">
             </div>
             <div class="form-group col-md-6">
                 <label for="phoneNumber">Κινητό Τηλέφωνο</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'phoneNumber'}}" id="phoneNumber"
-                    name="phoneNumber" value="{{data.phoneNumber}}">
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                    value="{{data.phoneNumber}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="adrStreet">Οδός</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'adrStreet'}}" id="adrStreet"
-                    name="adrStreet" value="{{data.adrStreet}}">
+                <input type="text" class="form-control" id="adrStreet" value="{{data.adrStreet}}">
             </div>
             <div class="form-group col-md-2">
                 <label for="adrNumber">Αριθμός</label>
-                <input type="number" class="form-control {{checkIfValid errorsParam 'adrNumber'}}" id="adrNumber"
-                    name="adrNumber" value="{{data.adrNumber}}">
+                <input type="number" class="form-control" id="adrNumber" value="{{data.adrNumber}}">
             </div>
             <div class="form-group col-md-4">
                 <label for="adrZipCode">ΤΚ</label>
-                <input type="text" class="form-control {{checkIfValid errorsParam 'adrZipCode'}}" id="adrZipCode"
-                    name="adrZipCode" value="{{data.adrZipCode}}">
+                <input type="text" class="form-control" id="adrZipCode" value="{{data.adrZipCode}}">
             </div>
         </div>
-        <p><em>Τα πεδία με αστερίσκο είναι υποχρεωτικά.</em></p>
-        <button type="submit" class="btn w-100">Υποβολή</button>
-    </form>
+    </div>
 </div>
+
+<script>
+    let inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        console.log(input);
+        input.setAttribute('disabled', '');
+    });
+</script>

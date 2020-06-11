@@ -15,7 +15,7 @@ const User = require('../models/user-model');
 exports.approveEmp_get = async (req, res) => {
     try {
         let locals = flashLocals(res);
-        let pendingEmp = await User.find({ userType: 'pending' }).lean();
+        let pendingEmp = await User.find({ userType: 'pending' }).limit(0).lean();
         locals.emp = pendingEmp;
         res.render('admin/approveEmp', locals);
     } catch (err) {
@@ -49,7 +49,7 @@ exports.approveEmpOne_post = async (req, res) => {
 exports.allUsers_get = async (req, res) => {
     try {
         let locals = flashLocals(res);
-        let allUsers = await User.find({ userType: { $ne: 'admin' } }).limit(0).lean();
+        let allUsers = await User.find({ $and: [{ userType: { $ne: 'admin' } }, { userType: { $ne: 'pending' } }] }).limit(0).lean();
         locals.all = allUsers;
         res.render('admin/allUsers', locals)
     } catch (err) {
@@ -57,7 +57,18 @@ exports.allUsers_get = async (req, res) => {
     }
 }
 
-exports.allUsers_post = async (req, res) => {
+exports.userProfile_get = async (req, res) => {
+    try {
+        let locals = flashLocals(res);
+        let data = await User.findOne({ _id: req.params.id, $and: [{ userType: { $ne: 'admin' } }, { userType: { $ne: 'pending' } }] }).lean();
+        locals.data = data;
+        res.render('admin/userProfile', locals)
+    } catch (err) {
+        res.send(err);
+    }
+}
+
+exports.deleteUser_post = async (req, res) => {
     try {
         let deletedUser = await User.findOne({ _id: req.body.userId }).lean();
         await User.deleteOne({ _id: req.body.userId, userType: { $ne: 'admin' } });

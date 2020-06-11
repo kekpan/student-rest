@@ -69,3 +69,14 @@ exports.profile_get = async (req, res) => {
         res.redirect('/');
     }
 }
+
+exports.profile_post = async (req, res) => {
+    try {
+        let locals = flashLocals(res);
+        userData = await User.findOne({ _id: req.user._id }, { password: 0 }).lean();
+        locals.data = userData;
+        res.render('profile', locals);
+    } catch (err) {
+        res.redirect('/');
+    }
+}

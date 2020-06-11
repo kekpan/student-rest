@@ -6,18 +6,11 @@
         <div class="col-md-10 mb-4">
             {{> alerts}}
             <h1>Όλοι οι χρήστες</h1>
-            <form method="POST">
-                <div class="list-group">
-                    {{#each all}}
-                    <a class="list-group-item list-group-item-action">
-                        {{lastName}}
-                        <button class="btn" type="submit" name="userId" value={{_id}}>
-                            Διαγραφή χρήστη
-                        </button>
-                    </a>
-                    {{/each}}
-                </div>
-            </form>
+            <div class="list-group">
+                {{#each all}}
+                <a href={{makeLink '/admin/all-' _id}} class="list-group-item list-group-item-action">{{lastName}}</a>
+                {{/each}}
+            </div>
         </div>
     </div>
 </div>

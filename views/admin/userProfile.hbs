@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="firstName">Όνομα </label>
+            <input type="text" class="form-control" id="firstName" name="firstName" value="{{data.firstName}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="lastName">Επώνυμο </label>
+            <input type="text" class="form-control" id="lastName" name="lastName" value="{{data.lastName}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="fatherName">Όνομα Πατέρα </label>
+            <input type="text" class="form-control" id="fatherName" name="fatherName" value="{{data.fatherName}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="motherSurname">Επώνυμο Μητέρας </label>
+            <input type="text" class="form-control" id="motherSurname" name="motherSurname"
+                value="{{data.motherSurname}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="idNumber" id="label-idNumber-std">
+                {{#if (userIsStud data.userType)}}
+                ΑΜ Φοιτητή
+                {{else}}
+                ΑΜΚΑ
+                {{/if}}</label>
+            <input type="text" class="form-control" id="idNumber" name="idNumber" value="{{data.idNumber}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="year" id="label-year-std">Έτος Α' Εγγραφής </label>
+            <input type="number" class="form-control" id="year" name="year" value="{{data.year}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="username">Username </label>
+            <input type="text" class="form-control" id="username" name="username" value="{{data.username}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="userType">Τύπος Χρήστη </label>
+            <input type="text" class="form-control" id="userType" name="userType" 
+                {{#if (userIsStud data.userType)}}
+                value="Φοιτητής"
+                {{else}}
+                value="Υπάλληλος"
+                {{/if}}>
+        </div>
+    </div>
+    <div class="form-group">
+            <label for="department">Τμήμα </label>
+            <input type="text" class="form-control" id="userDep"
+                    name="userType" value="{{data.department}}" readonly>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{data.email}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="phoneNumber">Κινητό Τηλέφωνο</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="{{data.phoneNumber}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="adrStreet">Οδός</label>
+            <input type="text" class="form-control" id="adrStreet" value="{{data.adrStreet}}">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="adrNumber">Αριθμός</label>
+            <input type="number" class="form-control" id="adrNumber" value="{{data.adrNumber}}">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="adrZipCode">ΤΚ</label>
+            <input type="text" class="form-control" id="adrZipCode" value="{{data.adrZipCode}}">
+        </div>
+    </div>
+    <form method="post">
+        <a id="btn1" class="mt-4 btn">Διαγραφή χρήστη</a>
+        <button id="btn2" type="submit" name="userId" value={{data._id}} class="mt-4 btn" style="display: none;">Επιβεβαίωση</button>
+        <a id="btn3" class="mt-4 btn" style="display: none;">Ακύρωση</a>
+    </form>
+</div>
+
+<script>
+    let inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        console.log(input);
+        input.setAttribute('disabled', '');
+    });
+
+    var btn1 = document.querySelector('#btn1');
+    var btn2 = document.querySelector('#btn2');
+    var btn3 = document.querySelector('#btn3');
+
+    btn1.addEventListener('click', check1 );
+    btn3.addEventListener('click', check2 );
+
+    function check1() {
+        btn1.style.display = 'none';
+        btn2.style.display = 'inline-block';
+        btn3.style.display = 'inline-block';
+    }
+
+    function check2() {
+        btn1.style.display = 'inline-block';
+        btn2.style.display = 'none';
+        btn3.style.display = 'none';
+    }
+
+</script>
