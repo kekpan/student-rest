@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const userCtrl = require('../controllers/user-ctrl');
+const auth = require('../services/auth');
 
 
 // Router object
@@ -20,6 +21,8 @@ router.get('/login', userCtrl.login_get);
 router.post('/login', userCtrl.login_post);
 // Log out
 router.get('/logout', userCtrl.logout);
+
+router.get('/profile', auth.ensure, userCtrl.profile_get);
 
 
 // Export module

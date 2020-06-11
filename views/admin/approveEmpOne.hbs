@@ -1,9 +1,17 @@
-<div class="container">
-    {{#if emp}}
-    <h1>H Αίτηση του {{emp.lastName}}</h1>
-    {{/if}}
-    <form method="POST">
-        <button class="btn" id="accept-btn" type="submit" name='answer' value="accept">Αποδοχή</button>
-        <button class="btn" id="decline-btn" type="submit" name='answer' value="decline">Απόριψη</button>
-    </form>
+<div class="container-fluid" style="margin-top:15px">
+    <div class="row">
+        <div class="col-md-2 mb-4" id="sidebar">
+            {{> adminSidebar}}
+        </div>
+        <div class="col-md-10 mb-4">
+            {{> alerts}}
+            {{#if emp}}
+            <h1>H Αίτηση του {{emp.lastName}}</h1>
+            {{/if}}
+            <form method="POST">
+                <button class="btn" id="accept-btn" type="submit" name='answer' value="accept">Αποδοχή</button>
+                <button class="btn" id="decline-btn" type="submit" name='answer' value="decline">Απόρριψη</button>
+            </form>
+        </div>
+    </div>
 </div>

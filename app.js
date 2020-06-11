@@ -18,7 +18,7 @@ const users = require('./routes/users-route');
 const helpers = require('./services/helpers');
 const flash = require('express-flash-messages');
 const expressValidator = require('express-validator');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 require('./services/passport')(passport);
 require('dotenv').config();
 
@@ -51,11 +51,11 @@ app.set('view engine', '.hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Body parser
-app.use(bodyParser.urlencoded({extended: false, limit: '25mb'}));
+app.use(bodyParser.urlencoded({ extended: false, limit: '25mb' }));
 app.use(bodyParser.json());
 
 // Session
-app.use(session({secret: 'superflexboy', resave: false, saveUninitialized: false}));
+app.use(session({ secret: 'superflexboy', resave: false, saveUninitialized: false }));
 
 // Validator
 app.use(expressValidator());
@@ -84,6 +84,9 @@ app.use('/card', cards);
 app.use('/schedule', schedule);
 app.use('/admin', admin);
 
+app.get('*', (req, res) => {
+    res.status(404).render('404', { user: req.user });
+});
 
 // Export module
 module.exports = app;

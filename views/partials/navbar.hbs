@@ -20,7 +20,7 @@
             {{#if user}}
             {{#if (userIsAdmin user.userType)}}
             <li class="nav-item">
-                <a class="nav-link" href="/admin/approve">Χρήστες</a>
+                <a class="nav-link" href="/admin/all">Χρήστες</a>
             </li>
             {{/if}}
             {{#if (cardAccess user)}}
@@ -51,7 +51,7 @@
                     {{user.username}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Προφίλ</a>
+                    <a class="dropdown-item" href="/users/profile">Προφίλ</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/users/logout">Αποσύνδεση</a>
                 </div>
