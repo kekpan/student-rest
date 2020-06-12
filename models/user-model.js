@@ -21,7 +21,12 @@ const userSchema = mongoose.Schema({
     mobilePhone: {type: String, required: false},
     address: {type: addressSchema, required: false},
     year: {type: Number, required: true},
-    damage: {type: Number, required: true}
+    damage: {type: Number, required: true},
+    coupons: {
+        breakfast: { type: Number, default: 0},
+        lunch: { type: Number, default: 0},
+        dinner: { type: Number, default: 0}
+    }
 });
 
 

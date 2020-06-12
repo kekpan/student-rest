@@ -9,5 +9,6 @@
       <input type="password" class="form-control {{checkIfValid errorsParam 'password'}}" name="password" placeholder="Κωδικός Πρόσβασης">
     </div>
   </div>
+  <input type="hidden" name="_csrf" value="{{csrfToken}}">
   <button type="submit" class="btn w-100">Σύνδεση</button>
 </form>

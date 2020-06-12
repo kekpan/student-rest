@@ -1,0 +1,25 @@
+<div class="container mt-3" style="width: 720px;">
+    <h1>Κουπόνια</h1>
+    <hr>
+    <a href="/coupons/cart" class="btn">Το καλάθι μου
+        <span class="badge">{{session.cart.totalQty}}</span>
+    </a>
+    <hr>
+    {{> alerts}}
+    {{#each coupons}}
+    <div class="card my-3">
+        <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">
+                <ul>
+                    <li>Breakfast: {{meal.breakfast}}</li>
+                    <li>Lunch: {{meal.lunch}}</li>
+                    <li>Dinner: {{meal.dinner}}</li>
+                </ul>
+                <span><strong>Price: {{price}} €</strong></span>
+            </p>
+            <a href={{joinStr '/coupons/' id}} class="btn">Προσθήκη στο καλάθι</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

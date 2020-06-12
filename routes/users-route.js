@@ -2,13 +2,14 @@
 const express = require('express');
 const path = require('path');
 const userCtrl = require('../controllers/user-ctrl');
-
+const csrf = require('csurf');
+const csrfProtection = csrf({cookie: true});
 
 // Router object
 const router = express.Router();
 // Staic files
 router.use(express.static(path.join(__dirname, '..', 'public')));
-
+router.use(csrfProtection);
 
 // Registration GET
 router.get('/register', userCtrl.register_get);

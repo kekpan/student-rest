@@ -8,7 +8,7 @@ var backURL;
 
 
 exports.register_get = (req, res) => {
-    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.width = '720px';
+    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.width = '720px0'; locals.csrfToken = req.csrfToken();
     res.render('register', locals);
 }
 
@@ -35,7 +35,7 @@ exports.register_post = (req, res) => {
 
 exports.login_get = (req, res) => {
     backURL = req.header('Referer') || '/';
-    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.width = '345px';
+    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.width = '345px'; locals.csrfToken = req.csrfToken();
     res.render('login', locals);
 }
 
