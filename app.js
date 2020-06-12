@@ -1,5 +1,6 @@
 // Import modules
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -7,6 +8,7 @@ const session = require('express-session');
 const handlebars = require('handlebars');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const path = require('path');
 const cards = require('./routes/cards-route');
@@ -15,12 +17,12 @@ const anncmnts = require('./routes/anncmnts-route');
 const admin = require('./routes/admin-route');
 const home = require('./routes/home-route');
 const users = require('./routes/users-route');
+const coupons = require('./routes/coupons-route');
 const helpers = require('./services/helpers');
 const flash = require('express-flash-messages');
 const expressValidator = require('express-validator');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 require('./services/passport')(passport);
-require('dotenv').config();
 
 
 // Database connection
@@ -47,25 +49,23 @@ const hbs = exphbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
-// Static files
-app.use(express.static(path.join(__dirname, 'public')));
 
-// Body parser
-app.use(bodyParser.urlencoded({ extended: false, limit: '25mb' }));
+// Middleware
 app.use(bodyParser.json());
-
-// Session
-app.use(session({ secret: 'superflexboy', resave: false, saveUninitialized: false }));
-
-// Validator
+app.use(bodyParser.urlencoded({extended: false, limit: '25mb'}));
 app.use(expressValidator());
-
-// Passport
+app.use(cookieParser());
+app.use(session({
+    secret: 'superflexboy',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({mongooseConnection: mongoose.connection}),
+    cookie: {maxAge: 180 * 60 * 1000}
+}));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Flash messages
-app.use(flash());
+app.use(express.static(path.join(__dirname, 'public'))); // ?
 
 // Data sanitization
 // app.use(mongoSanitize());
@@ -73,11 +73,11 @@ app.use(flash());
 // User variable
 app.get('*', (req, res, next) => {
     res.locals.user = req.user || null;
+    res.locals.session = req.session;
     next();
 });
 
 // Router mounting
-app.use('/', home);
 app.use('/users', users);
 app.use('/anncmnts', anncmnts);
 app.use('/card', cards);
@@ -87,6 +87,8 @@ app.use('/admin', admin);
 app.get('*', (req, res) => {
     res.status(404).render('404', { user: req.user });
 });
+app.use('/coupons', coupons);
+app.use('/', home);
 
 // Export module
 module.exports = app;

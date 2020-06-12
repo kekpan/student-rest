@@ -1,0 +1,43 @@
+<div class="container mt-3" style="width: 720px;">
+    <h1>Το καλάθι μου</h1>
+    <hr>
+    {{> alerts}}
+    {{#if products}}
+    <div class="row">
+        <div class="col">
+            <ul class="list-group">
+                {{#each products}}
+                <li class="list-group-item">
+                    <span class="badge">{{this.qty}} × </span>
+                    <strong>{{this.item.title}}</strong>
+                    <span> - {{this.price}} euros</span>
+                    <div class="btn-group">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Kek<span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a>Αφαίρεση ενός</a></li>
+                            <li><a>Αφαίρεση όλων</a></li>
+                        </ul>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <strong>Συνολικό κόστος: {{totalPrice}} euros</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn" href="/coupons/checkout">Checkout</a>
+        </div>
+    </div>
+    {{else}}
+    <div class="row">
+        <div class="col">
+            <h2>Δεν υπάρχουν κουπόνια στο καλάθι.</h2>
+        </div>
+    </div>
+    {{/if}}
+</div>

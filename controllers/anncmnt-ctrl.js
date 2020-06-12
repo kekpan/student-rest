@@ -52,7 +52,7 @@ exports.edit = (req, res) => {
     .then((err) => {
         if (!err.isEmpty()) return flashErrors.valid(req, res, err, '/anncmnts/'.concat(req.params.id));
         let editedAnncmnt = instances.editedAnncmnt(req);
-        Anncmnt.updateOne({_id: 'req.params.id'}, editedAnncmnt, (err) => {
+        Anncmnt.updateOne({_id: req.params.id}, editedAnncmnt, (err) => {
             if (err) return flashErrors.updateAnncmnt(req, res, err, req.body, req.params.id);
             req.flash('success', 'Η ανακοίνωση τροποποιήθηκε επιτυχώς.');
             res.redirect('/anncmnts');
