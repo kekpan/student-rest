@@ -83,12 +83,12 @@ app.use('/anncmnts', anncmnts);
 app.use('/card', cards);
 app.use('/schedule', schedule);
 app.use('/admin', admin);
-
-app.get('*', (req, res) => {
-    res.status(404).render('404', { user: req.user });
-});
 app.use('/coupons', coupons);
 app.use('/', home);
+
+// app.get('*', (req, res) => {
+//     res.status(404).render('404', { user: req.user });
+// });
 
 // Export module
 module.exports = app;
