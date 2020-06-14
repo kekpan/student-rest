@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const purchaseSchema = mongoose.Schema({
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    user: {type: String, ref: 'User'},
     cart: {type: Object, required: true},
     paymentId: {type: String, required: true}
 });

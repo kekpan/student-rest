@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Αγορές όλων</h1>
+            <hr>
+            {{#each purchases}}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {{#each this.items}}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{this.item.title}} | Ποσότητα: {{this.qty}}
+                            <span class="badge badge-primary badge-pill">{{this.price}}</span>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="panel-footer mb-4 bg-light"><strong>{{this.cart.totalPrice}} euros</strong> by user: {{user}} - Payment Id: {{paymentId}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

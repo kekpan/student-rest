@@ -41,18 +41,28 @@ body {
     border-radius: 5px;
 }
 
-.btn {
+/* .btn {
     border-color: black;
     color: black;
-}
+} */
 
 .btn:hover {
     border-color: black;
     background-color: #d7a760;
 }
 
-body {
+/* body {
     background: rgb(66, 66, 66);
-    /* background: linear-gradient(90deg, rgba(66, 66, 66, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(66, 66, 66, 1) 100%); */
-}
+    background: linear-gradient(90deg, rgba(66, 66, 66, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(66, 66, 66, 1) 100%);
+} */
 
+.form {
+    border-top-color: #006699;
+    border-top-style: solid;
+    border-top-width: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    outline: 1px solid #cbcbcb;
+    text-align: left;
+  }

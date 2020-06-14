@@ -11,13 +11,11 @@
                     <span class="badge">{{this.qty}} × </span>
                     <strong>{{this.item.title}}</strong>
                     <span> - {{this.price}} euros</span>
-                    <div class="btn-group">
-                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Kek<span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a>Αφαίρεση ενός</a></li>
-                            <li><a>Αφαίρεση όλων</a></li>
-                        </ul>
-                    </div>
+                    <ul class="dropdown">
+                        <li><a href={{joinStr "add/" this.item._id}}>Προσθήκη ενός</a></li>
+                        <li><a href={{joinStr "reduce/" this.item._id}}>Αφαίρεση ενός</a></li>
+                        <li><a href={{joinStr "remove/" this.item._id}}>Αφαίρεση όλων</a></li>
+                    </ul>
                 </li>
                 {{/each}}
             </ul>

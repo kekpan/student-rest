@@ -5,16 +5,15 @@ const flashErrors = require("../utils/flash-errors");
 const flashLocals = require("../utils/flash-locals");
 const instances = require("../utils/instances");
 var backURL;
-
 const User = require("../models/user-model");
+const Purchase = require('../models/purchase-model');
+const Cart = require('../models/cart-model');
 
 
 exports.register_get = (req, res) => {
-  let locals = flashLocals(res);
-  locals.layout = "login-reg";
-  locals.width = "720px";
-  res.render("register", locals);
-};
+    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.showProperty = true;
+    res.render('register', locals);
+}
 
 exports.register_post = (req, res) => {
   checkInput.register(req);
@@ -38,12 +37,9 @@ exports.register_post = (req, res) => {
 };
 
 exports.login_get = (req, res) => {
-  backURL = req.header("Referer") || "/";
-  let locals = flashLocals(res);
-  locals.layout = "login-reg";
-  locals.width = "345px";
-  res.render("login", locals);
-};
+    let locals = flashLocals(res); locals.layout = 'login-reg';
+    res.render('login', locals);
+}
 
 exports.login_post = (req, res, next) => {
   checkInput.login(req);
@@ -99,3 +95,29 @@ exports.updatepass_post = async (req, res) => {
     res.redirect("/");
   }
 };
+
+exports.purchases = (req, res) => {
+    Purchase.find({user: req.user.username}, (err, purchases) => {
+        if (err) return console.log(err);
+        let cart;
+        purchases.forEach((purchase) => {
+            cart = new Cart(purchase.cart);
+            purchase.items = cart.generateArray();
+        });
+        let locals = flashLocals(res); locals.purchases = purchases;
+        res.render('user-purchases', locals);
+    });
+}
+
+exports.purchases_all = (req, res) => {
+    Purchase.find({}, (err, purchases) => {
+        if (err) return console.log(err);
+        let cart;
+        purchases.forEach((purchase) => {
+            cart = new Cart(purchase.cart);
+            purchase.items = cart.generateArray();
+        });
+        let locals = flashLocals(res); locals.purchases = purchases;
+        res.render('all-purchases', locals);
+    });
+}

@@ -1,50 +1,41 @@
-<p class="d-flex justify-content-center">Έχετε ήδη λογαριασμό;&nbsp;<a href="/users/login">Συνδεθείτε εδώ</a>.</p><hr>
-<p class="d-flex justify-content-center">Επιλέξτε την ιδιότητά σας</p>
-<div class="form-row mx-auto">
-  <div class="form-group col-md-6">
-    <button type="button" class="btn w-100" id="std-btn">Φοιτητής</button>
-  </div>
-  <div class="form-group col-md-6">
-    <button type="button" class="btn w-100" id="emp-btn">Εργαζόμενος</button>
-  </div>
-</div>
-<form method="POST" action="/users/register" id="form" style="{{checkFormVisibility data errors}}">
+
+<form method="POST" action="/users/register" class="form mb-5 mx-2 px-3 py-4 pb-0 w-100" id="form" style="{{checkFormVisibility data errors}}; background-color: lightgray; max-width: 623px;">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="firstName">Όνομα *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'firstName'}}" id="firstName" name="firstName" value="{{data.firstName}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'firstName'}}" id="firstName" name="firstName" value="{{data.firstName}}" placeholder="ΟΝΟΜΑ">
     </div>
     <div class="form-group col-md-6">
       <label for="lastName">Επώνυμο *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'lastName'}}" id="lastName" name="lastName" value="{{data.lastName}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'lastName'}}" id="lastName" name="lastName" value="{{data.lastName}}" placeholder="ΟΝΟΜΑ">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="fatherName">Όνομα Πατέρα *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'fatherName'}}" id="fatherName" name="fatherName" value="{{data.fatherName}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'fatherName'}}" id="fatherName" name="fatherName" value="{{data.fatherName}}" placeholder="ΟΝΟΜΑ">
     </div>
     <div class="form-group col-md-6">
       <label for="motherSurname">Επώνυμο Μητέρας *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'motherSurname'}}" id="motherSurname" name="motherSurname" value="{{data.motherSurname}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'motherSurname'}}" id="motherSurname" name="motherSurname" value="{{data.motherSurname}}" placeholder="ΟΝΟΜΑ">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="idNumber" id="label-idNumber-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">ΑΜ Φοιτητή *</label>
       <label for="idNumber" id="label-idNumber-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">ΑΜΚΑ *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'idNumber'}}" id="idNumber" name="idNumber" value="{{data.idNumber}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'idNumber'}}" id="idNumber" name="idNumber" value="{{data.idNumber}}" placeholder="ΟΝΟΜΑ">
     </div>
     <div class="form-group col-md-6">
       <label for="year" id="label-year-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">Έτος Α' Εγγραφής *</label>
       <label for="year" id="label-year-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">Έτος Γέννησης *</label>
-      <input type="number" class="form-control {{checkIfValid errorsParam 'year'}}" id="year" name="year" value="{{data.year}}">
+      <input type="number" class="form-control {{checkIfValid errorsParam 'year'}}" id="year" name="year" value="{{data.year}}" placeholder="ΟΝΟΜΑ">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="username">Username *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'username'}}" id="username" name="username" value="{{data.username}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'username'}}" id="username" name="username" value="{{data.username}}" placeholder="username">
     </div>
     <div class="form-group col-md-6">
       <label for="userType">Τύπος Χρήστη *</label>
@@ -140,29 +131,37 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="email">Email</label>
-      <input type="email" class="form-control {{checkIfValid errorsParam 'email'}}" id="email" name="email" value="{{data.email}}">
+      <input type="email" class="form-control {{checkIfValid errorsParam 'email'}}" id="email" name="email" value="{{data.email}}" placeholder="email@domain.com">
     </div>
     <div class="form-group col-md-6">
       <label for="phoneNumber">Κινητό Τηλέφωνο</label>
+<<<<<<< HEAD
       <input type="text" class="form-control {{checkIfValid errorsParam 'phoneNumber'}}" id="mobilePhone" name="mobilePhone" value="{{data.mobilePhone}}">
+=======
+      <input type="text" class="form-control {{checkIfValid errorsParam 'phoneNumber'}}" id="phoneNumber" name="phoneNumber" value="{{data.phoneNumber}}" placeholder="6900000000">
+>>>>>>> nikos
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="adrStreet">Οδός</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'adrStreet'}}" id="adrStreet" name="adrStreet" value="{{data.adrStreet}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'adrStreet'}}" id="adrStreet" name="adrStreet" value="{{data.adrStreet}}" placeholder="ΛΕΔΩΦΟΡΟΣ ΒΑΣΙΛΙΣΣΗΣ ΣΟΦΙΑΣ">
     </div>
     <div class="form-group col-md-2">
       <label for="adrNumber">Αριθμός</label>
-      <input type="number" class="form-control {{checkIfValid errorsParam 'adrNumber'}}" id="adrNumber" name="adrNumber" value="{{data.adrNumber}}">
+      <input type="number" class="form-control {{checkIfValid errorsParam 'adrNumber'}}" id="adrNumber" name="adrNumber" value="{{data.adrNumber}}" placeholder="1">
     </div>
     <div class="form-group col-md-4">
       <label for="adrZipCode">ΤΚ</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'adrZipCode'}}" id="adrZipCode" name="adrZipCode" value="{{data.adrZipCode}}">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'adrZipCode'}}" id="adrZipCode" name="adrZipCode" value="{{data.adrZipCode}}" placeholder="12345">
     </div>
   </div>
   <p><em>Τα πεδία με αστερίσκο είναι υποχρεωτικά.</em></p>
+<<<<<<< HEAD
   <button type="submit" class="btn w-100 mb-4">Υποβολή</button>
+=======
+  <button type="submit" class="btn w-100">Υποβολή</button>
+>>>>>>> nikos
 </form>
 
 <script src="scripts/registration-btns.js" defer></script>
