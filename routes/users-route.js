@@ -24,6 +24,10 @@ router.get('/logout', userCtrl.logout);
 
 router.get('/profile', auth.ensure, userCtrl.profile_get);
 
+router.post('/profile', auth.ensure, userCtrl.profile_post);
+
+router.post('/updatepass', auth.ensure, userCtrl.updatepass_post);
+
 
 // Export module
 module.exports = router;

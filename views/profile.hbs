@@ -5,21 +5,21 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="firstName">Όνομα </label>
-                <input type="text" class="form-control" id="firstName" name="firstName" value="{{data.firstName}}">
+                <input readonly type="text" class="form-control" id="firstName" name="firstName" value="{{data.firstName}}">
             </div>
             <div class="form-group col-md-6">
                 <label for="lastName">Επώνυμο </label>
-                <input type="text" class="form-control" id="lastName" name="lastName" value="{{data.lastName}}">
+                <input readonly type="text" class="form-control" id="lastName" name="lastName" value="{{data.lastName}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="fatherName">Όνομα Πατέρα </label>
-                <input type="text" class="form-control" id="fatherName" name="fatherName" value="{{data.fatherName}}">
+                <input readonly type="text" class="form-control" id="fatherName" name="fatherName" value="{{data.fatherName}}">
             </div>
             <div class="form-group col-md-6">
                 <label for="motherSurname">Επώνυμο Μητέρας </label>
-                <input type="text" class="form-control" id="motherSurname" name="motherSurname"
+                <input readonly type="text" class="form-control" id="motherSurname" name="motherSurname"
                     value="{{data.motherSurname}}">
             </div>
         </div>
@@ -31,21 +31,21 @@
                     {{else}}
                     ΑΜΚΑ
                     {{/if}}</label>
-                <input type="text" class="form-control" id="idNumber" name="idNumber" value="{{data.idNumber}}">
+                <input readonly type="text" class="form-control" id="idNumber" name="idNumber" value="{{data.idNumber}}">
             </div>
             <div class="form-group col-md-6">
                 <label for="year" id="label-year-std">Έτος Α' Εγγραφής </label>
-                <input type="number" class="form-control" id="year" name="year" value="{{data.year}}">
+                <input readonly type="number" class="form-control" id="year" name="year" value="{{data.year}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="username">Username </label>
-                <input type="text" class="form-control" id="username" name="username" value="{{data.username}}">
+                <input readonly type="text" class="form-control" id="username" name="username" value="{{data.username}}">
             </div>
             <div class="form-group col-md-6">
                 <label for="userType">Τύπος Χρήστη </label>
-                <input type="text" class="form-control" id="userType" name="userType" {{#if (userIsStud data.userType)}}
+                <input readonly type="text" class="form-control" id="userType" name="userType" {{#if (userIsStud data.userType)}}
                     value="Φοιτητής" {{else}} value="Υπάλληλος" {{/if}}>
             </div>
         </div>
@@ -53,38 +53,55 @@
             <label for="department">Τμήμα </label>
             <input type="text" class="form-control" id="userDep" name="userType" value="{{data.department}}" readonly>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{data.email}}">
+        <form method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{data.email}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phoneNumber">Κινητό Τηλέφωνο</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                        value="{{data.mobilePhone}}">
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label for="phoneNumber">Κινητό Τηλέφωνο</label>
-                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
-                    value="{{data.phoneNumber}}">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="adrStreet">Οδός</label>
+                    <input type="text" class="form-control" name="adrStreet" id="adrStreet" value="{{data.address.street}}">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="adrNumber">Αριθμός</label>
+                    <input type="number" class="form-control" name="adrNumber" id="adrNumber"
+                        value="{{data.address.number}}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="adrZipCode">ΤΚ</label>
+                    <input type="text" class="form-control" name="adrZipCode" id="adrZipCode"
+                        value="{{data.address.zipCode}}">
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="adrStreet">Οδός</label>
-                <input type="text" class="form-control" id="adrStreet" value="{{data.adrStreet}}">
+            <button type="submit" class="btn">Αποθήκευση</button>
+        </form>
+        <form action="/users/updatepass" method="POST">
+            <div class="form-row p-1">
+                <label for="oldPassword">Παλιός Κωδικός</label>
+                <input type="password" class="form-control {{checkIfValid errorsParam 'password'}}" id="oldPassword"
+                    name="oldPassword">
             </div>
-            <div class="form-group col-md-2">
-                <label for="adrNumber">Αριθμός</label>
-                <input type="number" class="form-control" id="adrNumber" value="{{data.adrNumber}}">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="password">Νέος Κωδικός Πρόσβασης</label>
+                    <input type="password" class="form-control {{checkIfValid errorsParam 'password'}}" id="password"
+                        name="password">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="password2">Επαλήθευση Νέου Κωδικού</label>
+                    <input type="password" class="form-control {{checkIfValid errorsParam 'password2'}}" id="password2"
+                        name="password2">
+                </div>
             </div>
-            <div class="form-group col-md-4">
-                <label for="adrZipCode">ΤΚ</label>
-                <input type="text" class="form-control" id="adrZipCode" value="{{data.adrZipCode}}">
-            </div>
-        </div>
+            <button type="submit" class="btn">Αλλαγή Κωδικού</button>
+        </form>
     </div>
 </div>
-
-<script>
-    let inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        console.log(input);
-        input.setAttribute('disabled', '');
-    });
-</script>

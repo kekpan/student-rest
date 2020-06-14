@@ -49,7 +49,7 @@ exports.approveEmpOne_post = async (req, res) => {
 exports.allUsers_get = async (req, res) => {
     try {
         let locals = flashLocals(res);
-        let allUsers = await User.find({ $and: [{ userType: { $ne: 'admin' } }, { userType: { $ne: 'pending' } }] }).limit(0).lean();
+        let allUsers = await User.find({ $and: [{ userType: { $ne: 'admin' } }, { userType: { $ne: 'pending' } }] }).limit(0).sort({department:1, lastName:1}).lean();
         locals.all = allUsers;
         res.render('admin/allUsers', locals)
     } catch (err) {

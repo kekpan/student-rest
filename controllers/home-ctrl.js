@@ -6,3 +6,8 @@ exports.home = (req, res) => {
     let locals = flashLocals(res);
     res.render('home', locals);
 }
+
+exports.contact = (req, res) => {
+    let locals = flashLocals(res);
+    res.render('contact', locals);
+}

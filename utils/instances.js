@@ -156,3 +156,15 @@ function saveFile(file, fileEncoded) {
         file.fileType = image.type
     }
 }
+
+exports.updateProfile = (body) => {
+    return {
+        email: body.email,
+        mobilePhone: body.phoneNumber,
+        address: {
+            street: body.adrStreet,
+            number: body.adrNumber,
+            zipCode: body.adrZipCode
+        },
+    };
+}

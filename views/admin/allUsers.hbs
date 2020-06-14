@@ -5,12 +5,54 @@
         </div>
         <div class="col-md-10 mb-4">
             {{> alerts}}
-            <h1>Όλοι οι χρήστες</h1>
-            <div class="list-group">
-                {{#each all}}
-                <a href={{makeLink '/admin/all-' _id}} class="list-group-item list-group-item-action">{{lastName}}</a>
-                {{/each}}
+            <div class="form-group">
+                <label for="userType">Επιλογή τύπου χρήστη</label>
+                <select class="form-control" id="selector">
+                    <option value=1 selected>Φοιτητές</option>
+                    <option value=2>Υπάλληλοι</option>
+                </select>
+            </div>
+            <div id="students">
+                <h1>Όλοι οι φοιτητές</h1>
+                <div class="list-group">
+                    {{#each all}}
+                    {{#if (ifEqual userType 'student')}}
+                    <a href={{makeLink '/admin/all-' _id}}
+                        class="list-group-item list-group-item-action">{{lastName}} ({{department}})</a>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            <div id="employees" style="display: none;">
+                <h1>Όλοι οι υπάλληλοι</h1>
+                <div class="list-group">
+                    {{#each all}}
+                    {{#if (ifEqual userType 'employee')}}
+                    <a href={{makeLink '/admin/all-' _id}} class="list-group-item list-group-item-action">{{lastName}}
+                        ({{department}})</a>
+                    {{/if}}
+                    {{/each}}
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    let selector = document.querySelector('#selector');
+    let students = document.querySelector('#students');
+    let employees = document.querySelector('#employees');
+    selector.addEventListener('change', displayUser);
+
+    function displayUser() {
+        if (selector.value == 1) {
+            students.style.display = 'block';
+            employees.style.display = 'none';
+        } 
+        if (selector.value == 2) {
+            students.style.display = 'none';
+            employees.style.display = 'block';
+        }
+    }
+</script>

@@ -4,33 +4,73 @@
             {{> cardSidebar}}
         </div>
         <div class="col-md-10 mb-4">
-            <h1>Ολες οι αιτήσεις προς έγκριση</h1>
-            <div class="list-group">
-                {{#each applications}}
-                {{#if (ifEqual status '0')}}
-                <a href={{makeLink '/card/check-' userId}}
-                    class="list-group-item list-group-item-action">{{lastName}}</a>
-                {{/if}}
-                {{/each}}
+            <div class="form-group">
+                <label for="appType">Στάδιο αίτησης</label>
+                <select class="form-control" id="selector">
+                    <option value=1 selected>Προς έγκριση</option>
+                    <option value=2>Που έχουν εγκριθεί </option>
+                    <option value=3>Που έχουν απορριφθεί</option>
+                </select>
             </div>
-            <h1>Ολες οι αιτήσεις που εγκρίθηκαν </h1>
-            <div class="list-group">
-                {{#each applications}}
-                {{#if (ifEqual status '1')}}
-                <a href={{makeLink '/card/check-' userId}}
-                    class="list-group-item list-group-item-action">{{lastName}}</a>
-                {{/if}}
-                {{/each}}
+            <div id="pending">
+                <h1>Ολες οι αιτήσεις προς έγκριση</h1>
+                <div class="list-group">
+                    {{#each applications}}
+                    {{#if (ifEqual status '0')}}
+                    <a href={{makeLink '/card/check-' userId}}
+                        class="list-group-item list-group-item-action">{{lastName}}</a>
+                    {{/if}}
+                    {{/each}}
+                </div>
             </div>
-            <h1>Ολες οι αιτήσεις που απορρίφθηκαν</h1>
-            <div class="list-group">
-                {{#each applications}}
-                {{#if (ifEqual status '2')}}
-                <a href={{makeLink '/card/check-' userId}}
-                    class="list-group-item list-group-item-action">{{lastName}}</a>
-                {{/if}}
-                {{/each}}
+            <div id="accepted" style="display: none;">
+                <h1>Ολες οι αιτήσεις που εγκρίθηκαν </h1>
+                <div class="list-group">
+                    {{#each applications}}
+                    {{#if (ifEqual status '1')}}
+                    <a href={{makeLink '/card/check-' userId}}
+                        class="list-group-item list-group-item-action">{{lastName}}</a>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            <div id="declined" style="display: none;">
+                <h1>Ολες οι αιτήσεις που απορρίφθηκαν</h1>
+                <div class="list-group">
+                    {{#each applications}}
+                    {{#if (ifEqual status '2')}}
+                    <a href={{makeLink '/card/check-' userId}}
+                        class="list-group-item list-group-item-action">{{lastName}}</a>
+                    {{/if}}
+                    {{/each}}
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    let selector = document.querySelector('#selector');
+    let pending = document.querySelector('#pending');
+    let accepted = document.querySelector('#accepted');
+    let declined = document.querySelector('#declined');
+    selector.addEventListener('change', displayApp);
+
+    function displayApp() {
+        if (selector.value == 1) {
+            pending.style.display = 'block';
+            accepted.style.display = 'none';
+            declined.style.display = 'none';
+        } 
+        if (selector.value == 2) {
+            pending.style.display = 'none';
+            accepted.style.display = 'block';
+            declined.style.display = 'none';
+        }
+        if (selector.value == 3) {
+            pending.style.display = 'none';
+            accepted.style.display = 'none';
+            declined.style.display = 'block';
+        }
+    }
+</script>
