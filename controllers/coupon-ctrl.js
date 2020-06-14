@@ -23,6 +23,33 @@ exports.add_to_cart = (req, res) => {
     });
 }
 
+exports.add_one = (req, res) => {
+    const productId = req.params.id;
+    const cart = new Cart(req.session.cart ? req.session.cart : {});
+    Coupon.findById(productId, (err, product) => {
+        if (err) return res.redirect('/');
+        cart.add(product, product.id);
+        req.session.cart = cart;
+        res.redirect('/coupons/cart');
+    });
+}
+
+exports.remove_one = (req, res) => {
+    const productId = req.params.id;
+    const cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.reduceByOne(productId);
+    req.session.cart = cart;
+    res.redirect('/coupons/cart')
+}
+
+exports.remove_all = (req, res) => {
+    const productId = req.params.id;
+    const cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.removeItem(productId);
+    req.session.cart = cart;
+    res.redirect('/coupons/cart')
+}
+
 exports.show_cart = (req, res) => {
     if (!req.session.cart) return res.render('coupons/cart', {products: null});
     const cart = new Cart(req.session.cart);
@@ -52,7 +79,7 @@ exports.checkout_post = (req, res) => {
             return res.redirect('/coupons/checkout');
         }
         const purchase = new Purchase({
-            user: req.user,
+            user: req.user.username,
             cart: cart,
             paymentId: charge.id
         });

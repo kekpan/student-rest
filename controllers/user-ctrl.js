@@ -6,9 +6,12 @@ const flashLocals = require('../utils/flash-locals');
 const instances = require('../utils/instances');
 var backURL;
 
+const Purchase = require('../models/purchase-model');
+const Cart = require('../models/cart-model');
+
 
 exports.register_get = (req, res) => {
-    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.width = '720px0'; locals.csrfToken = req.csrfToken();
+    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.showProperty = true;
     res.render('register', locals);
 }
 
@@ -35,7 +38,7 @@ exports.register_post = (req, res) => {
 
 exports.login_get = (req, res) => {
     backURL = req.header('Referer') || '/';
-    let locals = flashLocals(res); locals.layout = 'login-reg'; locals.width = '345px'; locals.csrfToken = req.csrfToken();
+    let locals = flashLocals(res); locals.layout = 'login-reg';
     res.render('login', locals);
 }
 
@@ -56,4 +59,30 @@ exports.logout = (req, res) => {
     backURL = req.header('Referer') || '/';
     req.logOut();
     res.redirect(backURL);
+}
+
+exports.purchases = (req, res) => {
+    Purchase.find({user: req.user.username}, (err, purchases) => {
+        if (err) return console.log(err);
+        let cart;
+        purchases.forEach((purchase) => {
+            cart = new Cart(purchase.cart);
+            purchase.items = cart.generateArray();
+        });
+        let locals = flashLocals(res); locals.purchases = purchases;
+        res.render('user-purchases', locals);
+    });
+}
+
+exports.purchases_all = (req, res) => {
+    Purchase.find({}, (err, purchases) => {
+        if (err) return console.log(err);
+        let cart;
+        purchases.forEach((purchase) => {
+            cart = new Cart(purchase.cart);
+            purchase.items = cart.generateArray();
+        });
+        let locals = flashLocals(res); locals.purchases = purchases;
+        res.render('all-purchases', locals);
+    });
 }

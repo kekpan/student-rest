@@ -58,9 +58,7 @@ app.use(cookieParser());
 app.use(session({
     secret: 'superflexboy',
     resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({mongooseConnection: mongoose.connection}),
-    cookie: {maxAge: 180 * 60 * 1000}
+    saveUninitialized: false
 }));
 app.use(flash());
 app.use(passport.initialize());

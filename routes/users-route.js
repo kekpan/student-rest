@@ -2,14 +2,11 @@
 const express = require('express');
 const path = require('path');
 const userCtrl = require('../controllers/user-ctrl');
-const csrf = require('csurf');
-const csrfProtection = csrf({cookie: true});
 
 // Router object
 const router = express.Router();
 // Staic files
 router.use(express.static(path.join(__dirname, '..', 'public')));
-router.use(csrfProtection);
 
 // Registration GET
 router.get('/register', userCtrl.register_get);
@@ -22,6 +19,9 @@ router.post('/login', userCtrl.login_post);
 // Log out
 router.get('/logout', userCtrl.logout);
 
+router.get('/purchases', userCtrl.purchases);
+
+router.get('/purchases-all', userCtrl.purchases_all);
 
 // Export module
 module.exports = router;

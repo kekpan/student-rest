@@ -11,6 +11,9 @@ const router = express.Router();
 router.use(express.static(path.join(__dirname, '..', 'public')));
 
 router.get('/', couponCtrl.show_all);
+router.get('/remove/:id', couponCtrl.remove_all);
+router.get('/reduce/:id', couponCtrl.remove_one);
+router.get('/add/:id', couponCtrl.add_one);
 router.get('/cart', couponCtrl.show_cart);
 router.get('/checkout', auth.ensure, couponCtrl.checkout_get);
 router.post('/checkout', auth.ensure, couponCtrl.checkout_post);
