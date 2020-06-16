@@ -39,7 +39,7 @@ exports.checkIfValid = (arr, inputName) => {
     if (!arr) return;
     if ([inputName, inputName+1, inputName+11, inputName+12, inputName+2, inputName+21, inputName+22,].some((input) => arr.includes(input))) {
         return 'border border-danger';
-    } else if (inputName === 'password' || inputName === 'password2') {
+    } else if (inputName === 'password' || inputName === 'password2' || inputName === 'title' || inputName === 'body') {
         return;
     } else {
         return 'border border-success';

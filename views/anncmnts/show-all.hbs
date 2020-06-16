@@ -1,33 +1,12 @@
-{{!-- <div class="container" style="max-width: 720px;">
-    <div class="container" style="background-color: white;">
-        <div class="row justify-content-center">
-            <h3 class="p-3 mb-0 w-100" style="background-color: #f5f5f5;">Ανακοινώσεις</h1>
-        </div>
-        {{#if (userIsSec user.userType user.department)}}
-            <hr><a href="/anncmnts/add" class="btn mb-3">Νέα Ανακοίνωση</a>
-        {{/if}}
-        {{> alerts}}
-        {{#each anncmnts}}
-            <div class="row justify-content-center">
-                <div class="mx-2 w-100">
-                    <h5 class="card-title">{{title}} &bull; {{dmyFormat modifiedAt}}</h5>
-                    <p class="card-text">{{slice body}}</p>
-                    <a href={{joinStr '/anncmnts/' id}} class="btn">Διαβάστε περισσότερα</a>
-                </div>
-            </div>
-        {{/each}}
-    </div>
-</div> --}}
-
-<div class="container">
+<div class="container mb-5">
     <div class="row justify-content-center">
         <div class="p-0 mx-2 w-100 border-bottom" style="background-color: #f5f5f5; max-width: 760px;">
             <div class="container-fluid">
                 <div class="row shadow-sm">
                     <div class="col-sm-9 d-flex justify-content-start">
-                        <h3 class="p-4 mb-0 w-100">Ανακοινώσεις</h1>
+                        <h3 class="p-4 mb-0 w-100">Ανακοινώσεις</h3>
                     </div>
-                    <div class="col-sm-3 d-flex align-items-center">
+                    <div class="col-sm-3 my-1 d-flex justify-content-end align-items-center">
                         {{#if (userIsSec user.userType user.department)}}
                         <a href="/anncmnts/add" class="btn" id="newAnncmnt">Νέα Ανακοίνωση</a>
                         {{/if}}
@@ -36,7 +15,11 @@
             </div>
         </div>
     </div>
-    {{> alerts}}
+    <div class="row justify-content-center">
+        <div class="mx-2 my-0 w-100" style="max-width: 760px;">
+            {{> alerts}}
+        </div>
+    </div>
     {{#each anncmnts}}
     <div class="row justify-content-center">
         <div class="px-2 pt-4 pb-2 mx-2 w-100 border-bottom bg-white" style="max-width: 760px;">

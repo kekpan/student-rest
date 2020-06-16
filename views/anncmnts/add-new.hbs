@@ -1,19 +1,73 @@
-<div class="container">
+<div class="container mb-5">
+    {{#showErrors}}
     <div class="row justify-content-center">
-        <div class="px-2">
+        <div class="mx-2 my-2 w-100" style="max-width: 760px;">
             {{> alerts}}
-            <form method="POST" action="/anncmnts/add" class="mt-2">
-                <div class="form-group">
-                    <label>Τίτλος</label>
-                    <input type="text" class="form-control" name="title">
-                </div>
-                <div class="form-group">
-                    <label>Σώμα</label>
-                    <textarea cols="50" rows="4" class="form-control" name="body"></textarea>
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn mt-3">Προσθήκη</button>
-                </div>
-            </form>
         </div>
     </div>
+    {{/showErrors}}
+    <form method="POST" action="/anncmnts/add">
+        <div class="row justify-content-center">
+            <div class="p-0 mx-2 w-100" style="background-color: #f5f5f5; max-width: 760px;">
+                <div class="container-fluid">
+                    <div class="row border-bottom">
+                        <div class="col d-flex justify-content-start">
+                            <h3 class="p-4 mb-0 w-100">Προσθήκη ανακοίνωσης</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="p-0 mx-2 w-100 border-bottom" style="background-color: #f5f5f5; max-width: 760px;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            <label class="mt-2 py-2 mb-0 w-100">Τίτλος</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            <input type="text" class="form-control my-2 mb-3 w-100 {{checkIfValid errorsParam 'title'}}" name="title" value="{{#if data.title}}{{data.title}}{{else}}{{/if}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="py-1 mx-2 w-100 border-bottom bg-white" style="max-width: 760px;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <label class="mt-2 mb-0 py-2 w-100">Σώμα</label>
+                            <textarea rows=20 class="form-control my-2 mb-3 w-100 {{checkIfValid errorsParam 'body'}}" name="body">{{#if data.body}}{{data.body}}{{else}}{{/if}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="py-3 mx-2 w-100 border-bottom" style="background-color: #f5f5f5; max-width: 760px;">
+                <div class="container-fluid px-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="container">
+                                <div id="add-btns" class="container">
+                                    <button id="add-confirm" type="submit" class="btn mr-1">Προσθήκη</button>
+                                    <button id="trigger-addCan" type="button" class="btn ml-1">Ακύρωση</button>
+                                </div>
+                                <div id="addCan-btns" class="container" style="display: none;">
+                                    <div class="pb-2">Είστε σίγουροι ότι θέλετε να συνεχίσετε; Οι αλλαγές σας δε θα αποθηκευτούν.</div>
+                                    <button id="addCan-confirm" type="button" class="btn btn-danger mr-1">Ναι</button>
+                                    <button id="addCan-cancel" type="button" class="btn ml-1">Πίσω στην επεξεργασία</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
+
+<script src="scripts/anncmnt-btns.js" defer></script>
