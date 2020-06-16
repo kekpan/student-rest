@@ -18,8 +18,7 @@ exports.register_get = (req, res) => {
 exports.register_post = (req, res) => {
   checkInput.register(req);
   req.getValidationResult().then((err) => {
-    if (!err.isEmpty())
-      return flashErrors.valid(req, res, err, "/users/register");
+    if (!err.isEmpty()) return flashErrors.valid(req, res, err, "/users/register");
     const newUser = instances.createUser(req);
     bcrypt.genSalt(10, (err, salt) => {
       if (err) return flashErrors.regUser(req, res, err);
@@ -45,6 +44,7 @@ exports.login_post = (req, res, next) => {
   checkInput.login(req);
   req.getValidationResult().then((err) => {
     if (!err.isEmpty()) return flashErrors.valid(req, res, err, "/users/login");
+    req.flash('data', req.body);
     passport.authenticate("local", {
       successRedirect: "/",
       failureRedirect: "/users/login",

@@ -51,18 +51,17 @@ body {
     background-color: #d7a760;
 }
 
-/* body {
-    background: rgb(66, 66, 66);
-    background: linear-gradient(90deg, rgba(66, 66, 66, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(66, 66, 66, 1) 100%);
-} */
+body {
+    background-color: #eeeeee;
+}
 
-.form {
+.form, #reg-msg {
     border-top-color: #006699;
     border-top-style: solid;
     border-top-width: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    outline: 1px solid #cbcbcb;
+    outline: 1px solid #006699;
     text-align: left;
-  }
+}

@@ -31,7 +31,13 @@ exports.slice = (str) => {
 
 exports.checkIfValid = (arr, inputName) => {
     if (!arr) return;
-    if (arr.includes(inputName)) return 'border border-danger';
+    if ([inputName, inputName+1, inputName+11, inputName+12, inputName+2, inputName+21, inputName+22,].some((input) => arr.includes(input))) {
+        return 'border border-danger';
+    } else if (inputName === 'password' || inputName === 'password2') {
+        return;
+    } else {
+        return 'border border-success';
+    }
 }
 
 exports.checkDisplay = (data, compare) => {
