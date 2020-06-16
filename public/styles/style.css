@@ -65,3 +65,40 @@ body {
     outline: 1px solid #006699;
     text-align: left;
 }
+
+h5 {
+    font-family: 'Franklin Gothic Medium', sans-serif;
+}
+
+#anncmnt-title:link {
+    color: inherit;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#anncmnt-title:visited {
+    color: inherit;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#anncmnt-title:hover {
+    color: #803136;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+#anncmnt-title:active {
+    color: #d7a760;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+#newAnncmnt {
+    background-color: #803136;
+}
+
+#newAnncmnt:hover {
+    background-color: #d7a760;
+    color: black;
+}

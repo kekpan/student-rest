@@ -16,6 +16,12 @@ exports.dmyFormat = (t) => {
     return dd + '/' + mm + '/' + t.getFullYear();
 }
 
+exports.dmFormat = (t) => {
+    let dd = t.getDate(); if (dd < 10) dd = '0' + dd;
+    let mm = t.getMonth() + 1; if (mm < 10) mm = '0' + mm;
+    return dd + '/' + mm ;
+}
+
 exports.dmyTimeFormat = (t) => {
     let dd = t.getDate(); if (dd < 10) dd = '0' + dd;
     let mm = t.getMonth() + 1; if (mm < 10) mm = '0' + mm;
