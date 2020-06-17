@@ -16,6 +16,12 @@ exports.dmyFormat = (t) => {
     return dd + '/' + mm + '/' + t.getFullYear();
 }
 
+exports.dmFormat = (t) => {
+    let dd = t.getDate(); if (dd < 10) dd = '0' + dd;
+    let mm = t.getMonth() + 1; if (mm < 10) mm = '0' + mm;
+    return dd + '/' + mm ;
+}
+
 exports.dmyTimeFormat = (t) => {
     let dd = t.getDate(); if (dd < 10) dd = '0' + dd;
     let mm = t.getMonth() + 1; if (mm < 10) mm = '0' + mm;
@@ -31,7 +37,13 @@ exports.slice = (str) => {
 
 exports.checkIfValid = (arr, inputName) => {
     if (!arr) return;
-    if (arr.includes(inputName)) return 'border border-danger';
+    if ([inputName, inputName+1, inputName+11, inputName+12, inputName+2, inputName+21, inputName+22,].some((input) => arr.includes(input))) {
+        return 'border border-danger';
+    } else if (inputName === 'password' || inputName === 'password2' || inputName === 'title' || inputName === 'body') {
+        return;
+    } else {
+        return 'border border-success';
+    }
 }
 
 exports.checkDisplay = (data, compare) => {

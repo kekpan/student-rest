@@ -1,59 +1,68 @@
-
-<form method="POST" action="/users/register" class="form mb-5 mx-2 px-3 py-4 pb-0 w-100" id="form" style="{{checkFormVisibility data errors}}; background-color: lightgray; max-width: 623px;">
+<form method="POST" action="/users/register" class="form mb-3 mx-2 px-3 py-4 pb-0 w-100" id="form" style="{{checkFormVisibility data errors}}; background-color: #f5f5f5; max-width: 623px;">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="firstName">Όνομα *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'firstName'}}" id="firstName" name="firstName" value="{{data.firstName}}" placeholder="ΟΝΟΜΑ">
+      <label for="firstName">Όνομα (*)</label>
+      <input type="text" class="form-control {{checkIfValid errorsParam 'firstName'}}" id="firstName" name="firstName" value="{{data.firstName}}">
+      <small id="firstNameHelp" class="form-text text-muted">Με ελληνικά κεφαλαία γράμματα.</small>
     </div>
     <div class="form-group col-md-6">
-      <label for="lastName">Επώνυμο *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'lastName'}}" id="lastName" name="lastName" value="{{data.lastName}}" placeholder="ΟΝΟΜΑ">
+      <label for="lastName">Επώνυμο (*)</label>
+      <input type="text" class="form-control {{checkIfValid errorsParam 'lastName'}}" id="lastName" name="lastName" value="{{data.lastName}}">
+      <small id="lastNameHelp" class="form-text text-muted">Με ελληνικά κεφαλαία γράμματα.</small>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="fatherName">Όνομα Πατέρα *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'fatherName'}}" id="fatherName" name="fatherName" value="{{data.fatherName}}" placeholder="ΟΝΟΜΑ">
+      <label for="fatherName">Όνομα και Επώνυμο Πατέρα (*)</label>
+      <input type="text" class="form-control {{checkIfValid errorsParam 'fatherName'}}" id="fatherName" name="fatherName" value="{{data.fatherName}}">
+      <small id="fatherNameHelp" class="form-text text-muted">Με ελληνικά κεφαλαία γράμματα.</small>
     </div>
     <div class="form-group col-md-6">
-      <label for="motherSurname">Επώνυμο Μητέρας *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'motherSurname'}}" id="motherSurname" name="motherSurname" value="{{data.motherSurname}}" placeholder="ΟΝΟΜΑ">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="idNumber" id="label-idNumber-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">ΑΜ Φοιτητή *</label>
-      <label for="idNumber" id="label-idNumber-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">ΑΜΚΑ *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'idNumber'}}" id="idNumber" name="idNumber" value="{{data.idNumber}}" placeholder="ΟΝΟΜΑ">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="year" id="label-year-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">Έτος Α' Εγγραφής *</label>
-      <label for="year" id="label-year-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">Έτος Γέννησης *</label>
-      <input type="number" class="form-control {{checkIfValid errorsParam 'year'}}" id="year" name="year" value="{{data.year}}" placeholder="ΟΝΟΜΑ">
+      <label for="motherSurname">Όνομα και Επώνυμο Μητέρας (*)</label>
+      <input type="text" class="form-control {{checkIfValid errorsParam 'motherSurname'}}" id="motherSurname" name="motherSurname" value="{{data.motherSurname}}">
+      <small id="motherSurnameHelp" class="form-text text-muted">Με ελληνικά κεφαλαία γράμματα.</small>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="username">Username *</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'username'}}" id="username" name="username" value="{{data.username}}" placeholder="username">
+      <label for="idNumber" id="label-idNumber-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">ΑΜ Φοιτητή (*)</label>
+      <label for="idNumber" id="label-idNumber-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">ΑΜΚΑ (*)</label>
+      <input type="text" class="form-control {{checkIfValid errorsParam 'idNumber'}}" id="idNumber" name="idNumber" value="{{data.idNumber}}">
+      <small id="idNumberHelp" class="form-text text-muted">Χωρίς κενά ανάμεσα στα ψηφία.</small>
     </div>
     <div class="form-group col-md-6">
-      <label for="userType">Τύπος Χρήστη *</label>
+      <label for="year" id="label-year-std" style="{{checkDisplay data.userType 'Φοιτητής'}}">Έτος Α' Εγγραφής (*)</label>
+      <label for="year" id="label-year-emp" style="{{checkDisplay data.userType 'Εργαζόμενος'}}">Έτος Γέννησης (*)</label>
+      <input type="number" class="form-control {{checkIfValid errorsParam 'year'}}" id="year" name="year" value="{{data.year}}">
+      <small id="yearHelp" class="form-text text-muted">Τετραψήφιος αριθμός χωρίς κενά.</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="username">Username (*)</label>
+      <input type="text" class="form-control {{checkIfValid errorsParam 'username'}}" id="username" name="username" value="{{data.username}}">
+      <small id="usernameHelp" class="form-text text-muted">Επιτρέπονται λατινικά πεζά γράμματα και αριθμοί.</small>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="userType">Τύπος Χρήστη (*)</label>
       <input type="text" class="form-control {{checkIfValid errorsParam 'userType'}}" id="userType" name="userType"  value="{{data.userType}}" readonly>
+      <small id="userTypeHelp" class="form-text text-muted">Συμπληρώνεται αυτόματα αναλόγως τι πατήσατε.</small>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="password">Κωδικός Πρόσβασης *</label>
+      <label for="password">Κωδικός Πρόσβασης (*)</label>
       <input type="password" class="form-control {{checkIfValid errorsParam 'password'}}" id="password" name="password">
+      <small id="passwordHelp" class="form-text text-muted">Πληκτρολογήστε τουλάχιστον τρεις χαρακτήρες.</small>
     </div>
     <div class="form-group col-md-6">
-      <label for="password2">Επαλήθευση Κωδικού *</label>
+      <label for="password2">Επαλήθευση Κωδικού (*)</label>
       <input type="password" class="form-control {{checkIfValid errorsParam 'password2'}}" id="password2" name="password2">
+      <small id="password2Help" class="form-text text-muted">Πληκτρολογήστε ξανά τον κωδικό σας.</small>
     </div>
   </div>
   <div class="form-group">
-    <label for="department">Τμήμα *</label>
+    <label for="department">Τμήμα (*)</label>
     <select class="form-control {{checkIfValid errorsParam 'department'}}" id="department-std" name="department" style="{{checkDisplay data.userType 'Φοιτητής'}}">
       {{#if (checkDeptValue data.department 0)}}
         <option>{{checkDeptValue data.department 0}}</option>
@@ -127,32 +136,37 @@
       <option>Λογιστήριο</option>
       <option>Προσωπικό Κουζίνας</option>
     </select>
+    <small id="departmentHelp" class="form-text text-muted">Πατήστε πάνω στο πεδίο επιλογής και επιλέξτε από τη λίστα.</small>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="email">Email</label>
-      <input type="email" class="form-control {{checkIfValid errorsParam 'email'}}" id="email" name="email" value="{{data.email}}" placeholder="email@domain.com">
+      <input type="email" class="form-control {{checkIfValid errorsParam 'email'}}" id="email" name="email" value="{{data.email}}">
     </div>
     <div class="form-group col-md-6">
       <label for="mobilePhone">Κινητό Τηλέφωνο</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'mobilePhone'}}" id="mobilePhone" name="mobilePhone" value="{{data.mobilePhone}}" placeholder="6900000000">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'mobilePhone'}}" id="mobilePhone" name="mobilePhone" value="{{data.mobilePhone}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="adrStreet">Οδός</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'adrStreet'}}" id="adrStreet" name="adrStreet" value="{{data.adrStreet}}" placeholder="ΛΕΔΩΦΟΡΟΣ ΒΑΣΙΛΙΣΣΗΣ ΣΟΦΙΑΣ">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'adrStreet'}}" id="adrStreet" name="adrStreet" value="{{data.adrStreet}}">
     </div>
     <div class="form-group col-md-2">
       <label for="adrNumber">Αριθμός</label>
-      <input type="number" class="form-control {{checkIfValid errorsParam 'adrNumber'}}" id="adrNumber" name="adrNumber" value="{{data.adrNumber}}" placeholder="1">
+      <input type="number" class="form-control {{checkIfValid errorsParam 'adrNumber'}}" id="adrNumber" name="adrNumber" value="{{data.adrNumber}}">
     </div>
     <div class="form-group col-md-4">
       <label for="adrZipCode">ΤΚ</label>
-      <input type="text" class="form-control {{checkIfValid errorsParam 'adrZipCode'}}" id="adrZipCode" name="adrZipCode" value="{{data.adrZipCode}}" placeholder="12345">
+      <input type="text" class="form-control {{checkIfValid errorsParam 'adrZipCode'}}" id="adrZipCode" name="adrZipCode" value="{{data.adrZipCode}}">
     </div>
   </div>
-  <p><em>Τα πεδία με αστερίσκο είναι υποχρεωτικά.</em></p>
+  <hr>
+  <p class="text-justify"><em><sup>(1)</sup> Τα πεδία με αστερίσκο είναι υποχρεωτικά.</em></p>
+  <p class="text-justify"><em><sup>(2)</sup> Ονόματα ή επώνυμα με δύο συνθετικά, να γραφούν με χρήση παύλας.</em><br><em>π.χ. ΓΕΩΡΓΙΟΣ-ΔΗΜΗΤΡΙΟΣ</em></p>
+  <p class="text-justify"><em><sup>(3)</sup> Όνομα και επώνυμο πατέρα και μητέρας, να διαχωριστούν με κενό.</em><br><em>π.χ. ΜΑΡΙΑ ΠΑΠΑΔΟΠΟΥΛΟΥ</em></p>
+  <hr>
   <button type="submit" class="btn w-100">Υποβολή</button>
 </form>
 

@@ -1,13 +1,16 @@
 // Get anncmnt's url
+if (document.querySelector('#id')) {
+    
 const id = document.querySelector('#id').innerHTML;
-const url = '/anncmnts/' + id;
+var url = '/anncmnts/' + id;
+}
 
 
 // Trigger edit
 $(document).ready( _ => {
     $('#trigger-edit').on('click', _ => {
         $("article").hide();
-        $("#basic-btns").hide();
+        $("#basic-btns-container").hide();
         $("form").show();
         $("#edit-btns").show();
     });
@@ -33,6 +36,29 @@ $(document).ready( _ => {
     $('#editCan-cancel').on('click', _ => {
         $("#editCan-btns").hide();
         $("#edit-btns").show();
+    });
+});
+
+// Trigger add cancellation
+$(document).ready( _ => {
+    $('#trigger-addCan').on('click', _ => {
+        $("#add-btns").hide();
+        $("#addCan-btns").show();
+    });
+});
+
+// Confirm add cancellation
+$(document).ready( _ => {
+    $('#addCan-confirm').on('click', _ => {
+        window.location.href = '/anncmnts';
+    });
+});
+
+// Decline add cancellation
+$(document).ready( _ => {
+    $('#addCan-cancel').on('click', _ => {
+        $("#addCan-btns").hide();
+        $("#add-btns").show();
     });
 });
 

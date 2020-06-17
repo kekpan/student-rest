@@ -1,47 +1,120 @@
-<div class="container">
-    {{> alerts}}
-
-    <article class="container mt-3" style="{{checkArtclVisibility data errors}}">
-        <h1>{{anncmnt.title}}</h1>
-        {{!-- <p style="font-size: 0.9em;"><em>Δημοσιεύτηκε {{dmyTimeFormat anncmnt.createdAt}}, από {{joinStrSp author.lastName author.firstName}}</em></p> --}}
-        {{#if anncmnt.modified}}
-            <p style="font-size: 0.9em;"><em>Τελευταία τροποποίηση {{dmyTimeFormat anncmnt.modifiedAt}}</em></p>
-        {{/if}}
-        <p class="my-2 p-3 bg-light">{{anncmnt.body}}</p>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="mx-2 my-0 w-100" style="max-width: 760px;">
+            {{> alerts}}
+        </div>
+    </div>
+    <article class="row justify-content-center" style="{{checkArtclVisibility data errors}}">
+        <div class="p-0 mx-2 w-100" style="background-color: #f5f5f5; max-width: 760px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col d-flex justify-content-start">
+                        <h3 class="p-3 mb-0 w-100">{{anncmnt.title}}</h1>
+                    </div>
+                </div>
+                <div class="row {{#if anncmnt.modified}}{{else}}border-bottom{{/if}}">
+                    <div class="col d-flex justify-content-start">
+                        <small class="px-3 py-1 mb-0 w-100">Δημοσιεύτηκε: {{dmyTimeFormat anncmnt.createdAt}}</small>
+                    </div>
+                </div>
+                {{#if anncmnt.modified}}
+                <div class="row border-bottom">
+                    <div class="col d-flex justify-content-start">
+                        <small class="px-3 py-1 mb-0 w-100">Τελευταία τροποποίηση: {{dmyTimeFormat anncmnt.modifiedAt}}</small>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
     </article>
-
+    <article class="row justify-content-center" style="{{checkArtclVisibility data errors}}">
+        <div class="py-4 mx-2 w-100 border-bottom bg-white" style="max-width: 760px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <p class="p-3 mb-0 w-100">{{anncmnt.body}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
     {{#if edit}}
-        <form method="POST" action={{joinStr '/anncmnts/' anncmnt.id}} class="mt-2" style="{{checkFormVisibility data errors}}">
-            <div class="form-group">
-                <label>Τίτλος</label>
-                <input type="text" class="form-control" name="title" value="{{#if data.tile}}{{data.tile}}{{else}}{{anncmnt.title}}{{/if}}">
+    <form method="POST" action={{joinStr '/anncmnts/' anncmnt.id}} style="{{checkFormVisibility data errors}}">
+        <div class="row justify-content-center">
+            <div class="p-0 mx-2 w-100" style="background-color: #f5f5f5; max-width: 760px;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            <input type="text" class="form-control mt-2 mb-3 p-3 mb-0 w-100" name="title" value="{{#if data.title}}{{data.title}}{{else}}{{anncmnt.title}}{{/if}}">
+                        </div>
+                    </div>
+                    <div class="row {{#if anncmnt.modified}}{{else}}border-bottom{{/if}}">
+                        <div class="col d-flex justify-content-start">
+                            <small class="px-3 py-1 mb-0 w-100">Δημοσιεύτηκε: {{dmyTimeFormat anncmnt.createdAt}}</small>
+                        </div>
+                    </div>
+                    {{#if anncmnt.modified}}
+                    <div class="row border-bottom">
+                        <div class="col d-flex justify-content-start">
+                            <small class="px-3 py-1 mb-0 w-100">Τελευταία τροποποίηση: {{dmyTimeFormat anncmnt.modifiedAt}}</small>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
             </div>
-            <div class="form-group">
-                <label>Σώμα</label>
-                <textarea cols="50" rows="4" class="form-control" name="body">{{anncmnt.body}}</textarea>
-            </div>
-            <div id="edit-btns" class="container mt-3" style="{{checkFormVisibility data errors}}">
-                <button id="edit-confirm" type="submit" class="btn">Υποβολή</button>
-                <button id="trigger-editCan" type="button" class="btn">Ακύρωση</button>
-            </div>
-            <div id="editCan-btns" class="container mt-3" style="display: none;">
-                <div>Είστε σίγουροι ότι θέλετε να συνεχίσετε; Οι αλλαγές σας δε θα αποθηκευτούν.</div>
-                <button id="editCan-confirm" type="button" class="btn btn-danger">Ναι</button>
-                <button id="editCan-cancel" type="button" class="btn">Πίσω στην επεξεργασία</button>
-            </div>
-        </form>
-        <div id="basic-btns" class="container mt-3" style="{{checkArtclVisibility data errors}}">
-            <button id="trigger-edit" class="btn">Επεξεργασία</button>
-            <button id="trigger-del" class="btn btn-danger">Διαγραφή</button>
         </div>
-        <div id="del-btns" class="container mt-3" style="display: none;">
-            <div>Είστε σίγουροι ότι θέλετε να διαγράψετε την ανακοίνωση; Η ενέργεια είναι μη αναστρέψιμη.</div>
-            <button id="del-confirm" class="btn btn-danger">Ναι</button>
-            <button id="del-cancel" class="btn">Ακύρωση</button>
+        <div class="row justify-content-center">
+            <div class="py-1 mx-2 w-100 border-bottom bg-white" style="max-width: 760px;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <textarea rows=20 class="form-control py-4 px-3 mb-0 w-100" name="body">{{#if data.body}}{{data.body}}{{else}}{{anncmnt.body}}{{/if}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="py-2 mx-2 w-100 border-bottom" style="background-color: #f5f5f5; max-width: 760px;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <div id="edit-btns" class="container" style="{{checkFormVisibility data errors}}">
+                                <button id="edit-confirm" type="submit" class="btn mr-1">Υποβολή</button>
+                                <button id="trigger-editCan" type="button" class="btn ml-1">Ακύρωση</button>
+                            </div>
+                            <div id="editCan-btns" class="container" style="display: none;">
+                                <div class="pb-2">Είστε σίγουροι ότι θέλετε να συνεχίσετε; Οι αλλαγές σας δε θα αποθηκευτούν.</div>
+                                <button id="editCan-confirm" type="button" class="btn btn-danger mr-1">Ναι</button>
+                                <button id="editCan-cancel" type="button" class="btn ml-1">Πίσω στην επεξεργασία</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="basic-btns-container" class="row justify-content-center">
+        <div class="py-2 mx-2 w-100 border-bottom" style="background-color: #f5f5f5; max-width: 760px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div id="basic-btns" class="container" style="{{checkArtclVisibility data errors}}">
+                            <button id="trigger-edit" class="btn mr-1">Επεξεργασία</button>
+                            <button id="trigger-del" class="btn btn-danger ml-1">Διαγραφή</button>
+                        </div>
+                        <div id="del-btns" class="container" style="display: none;">
+                            <div class="pb-2">Είστε σίγουροι ότι θέλετε να διαγράψετε την ανακοίνωση; Η ενέργεια είναι μη αναστρέψιμη.</div>
+                            <button id="del-confirm" class="btn btn-danger mr-1">Ναι</button>
+                            <button id="del-cancel" class="btn ml-1">Ακύρωση</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{/if}}
-
-    <p id="id" hidden>{{anncmnt.id}}</p>
 </div>
 
+<p id="id" hidden>{{anncmnt.id}}</p>
 <script src="scripts/anncmnt-btns.js" defer></script>
