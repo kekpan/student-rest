@@ -7,6 +7,9 @@
             {{> alerts}}
             <h1>Όλοι οι υπάλληλοι προς έγκριση</h1>
             <div class="list-group">
+                {{#unless emp}}
+                <p>Δεν υπάρχουν χρήστες που περιμένουν έγκριση</p>
+                {{/unless}}
                 {{#each emp}}
                 <a href={{makeLink '/admin/approve-' _id}}
                     class="list-group-item list-group-item-action">{{lastName}}</a>

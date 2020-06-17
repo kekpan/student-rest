@@ -5,13 +5,72 @@
         </div>
         <div class="col-md-10 mb-4">
             {{> alerts}}
-            {{#if emp}}
-            <h1>H Αίτηση του {{emp.lastName}}</h1>
-            {{/if}}
+            {{#if data}}
+            <div class="container">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName">Όνομα </label>
+                        <input readonly type="text" class="form-control" id="firstName" name="firstName"
+                            value="{{data.firstName}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Επώνυμο </label>
+                        <input readonly type="text" class="form-control" id="lastName" name="lastName"
+                            value="{{data.lastName}}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="fatherName">Όνομα Πατέρα </label>
+                        <input readonly type="text" class="form-control" id="fatherName" name="fatherName"
+                            value="{{data.fatherName}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="motherSurname">Επώνυμο Μητέρας </label>
+                        <input readonly type="text" class="form-control" id="motherSurname" name="motherSurname"
+                            value="{{data.motherSurname}}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idNumber" id="label-idNumber-std">
+                            {{#if (userIsStud data.userType)}}
+                            ΑΜ Φοιτητή
+                            {{else}}
+                            ΑΜΚΑ
+                            {{/if}}</label>
+                        <input readonly type="text" class="form-control" id="idNumber" name="idNumber"
+                            value="{{data.idNumber}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="year" id="label-year-std">Έτος Γέννησης </label>
+                        <input readonly type="number" class="form-control" id="year" name="year" value="{{data.year}}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="username">Username </label>
+                        <input readonly type="text" class="form-control" id="username" name="username"
+                            value="{{data.username}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="userType">Τύπος Χρήστη </label>
+                        <input readonly type="text" class="form-control" id="userType" name="userType"
+                            {{#if (userIsStud data.userType)}} value="Φοιτητής" {{else}} value="Υπάλληλος" {{/if}}>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="department">Τμήμα </label>
+                    <input type="text" class="form-control" id="userDep" name="userType" value="{{data.department}}"
+                        readonly>
+                </div>
+            </div>
             <form method="POST">
                 <button class="btn" id="accept-btn" type="submit" name='answer' value="accept">Αποδοχή</button>
                 <button class="btn" id="decline-btn" type="submit" name='answer' value="decline">Απόρριψη</button>
             </form>
+            {{/if}}
         </div>
     </div>
 </div>
+

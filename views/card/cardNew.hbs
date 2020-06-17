@@ -6,7 +6,7 @@
         <div class="col-md-10 mb-4">
             {{> alerts}}
             <h1>Αίτημα Έκδοσης</h1>
-            <div class="form-row">
+            <div class="form-row mb-3">
                 <div class="col">
                     <label for="inputFName">Όνομα</label>
                     <input type="text" class="form-control" disabled placeholder={{user.firstName}}>
@@ -24,6 +24,12 @@
                 <div class="col">
                     <label for="inputMotherName">Επώνυμο μητέρας</label>
                     <input type="text" class="form-control" disabled placeholder={{user.motherSurname}}>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="inputFatherName">Αριθμός μητρώου</label>
+                    <input type="text" class="form-control" disabled placeholder={{user.idNumber}}>
                 </div>
             </div>
             {{#notSent}}
@@ -46,7 +52,7 @@
             {{/notSent}}
             {{#unless notSent}}
             {{#if (ifEqual application.status '0')}}
-            <div class="alert alert-warning mb-3 p-2" role="alert">Η αίτηση σας έχει υποβληθεί επιτυχώς</div>
+            <div class="alert alert-warning mb-3 p-2" role="alert">Η αίτηση σας έχει υποβληθεί επιτυχώς.</div>
             {{/if}}
             {{#if (ifEqual application.status '0')}}
             <h3>Τα πιστοποιητικά που καταθέσατε</h3>
@@ -57,7 +63,7 @@
             </ul>
             {{/if}}
             {{#if (ifEqual application.status '1')}}
-            <div class="alert alert-success mb-3 p-2" role="alert">Η αίτηση σας έχει εγκριθεί</div>
+            <div class="alert alert-success mb-3 p-2" role="alert">Η αίτηση σας έχει εγκριθεί. Μπορείτε να την παραλάβετε από τα γραφεία της Μέριμνας</div>
             {{/if}}
             {{#if (ifEqual application.status '2')}}
             <div class="alert alert-danger mb-3 p-2" role="alert">Η αίτηση σας έχει απορριφθεί. Παρακαλώ ενημερώστε τα δικαιολογητικά σας. Λόγος απόρριψης: {{application.text}}</div>

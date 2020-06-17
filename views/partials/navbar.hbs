@@ -39,6 +39,9 @@
             {{/if}}
             {{/if}}
             {{/if}}
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Επικοινωνία</a>
+            </li>
         </ul>
         <ul class="navbar-nav">
             {{#unless user}}
@@ -55,8 +58,10 @@
                     {{user.username}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    {{#unless (userIsAdmin user.userType)}}
                     <a class="dropdown-item" href="/users/profile">Προφίλ</a>
                     <div class="dropdown-divider"></div>
+                    {{/unless}}
                     <a class="dropdown-item" href="/users/logout">Αποσύνδεση</a>
                 </div>
             </li>
