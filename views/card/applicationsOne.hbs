@@ -1,10 +1,25 @@
-<div class="container-fluid" style="margin-top:15px">
+<div class="container" style="margin-top:15px">
     <div class="row">
-        <div class="col-md-2 mb-4" id="sidebar">
+        <div class="col-md-3 mb-4" id="sidebar">
             {{> cardSidebar}}
         </div>
-        <div class="col-md-8 mb-4">
-            <h1>H Αίτηση του {{student.lastName}}</h1>
+        <div class="col-md-9 mb-4">
+            <div class="row justify-content-center">
+                <div class="p-0 mx-2 w-100 border-bottom" style="background-color: #f5f5f5;">
+                    <div class="container-fluid">
+                        <div class="row shadow-sm">
+                            <div class="col-sm-9 d-flex justify-content-start">
+                                <h3 class="p-4 mb-0 w-100">{{student.lastName}} {{student.firstName}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mx-2 my-0 w-100" style="max-width: 760px;">
+                    {{> alerts}}
+                </div>
+            </div>
             <ul class="list-group">
                 <a class="list-group-item list-group-item-action" download={{joinStr 'Πάσο_' student.idNumber}} href={{imagePath idCard}}>Φοιτητική ταυτότητα</a>
                 <a class="list-group-item list-group-item-action" download={{joinStr 'Φορολογική_' student.idNumber}} href={{imagePath tax}}>Φορολογική δήλωση</a>

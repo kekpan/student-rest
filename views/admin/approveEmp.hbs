@@ -1,20 +1,60 @@
-<div class="container-fluid" style="margin-top:15px">
+<div class="container" style="margin-top:15px">
     <div class="row">
-        <div class="col-md-2 mb-4" id="sidebar">
+        <div class="col-md-3 mb-4" id="sidebar">
             {{> adminSidebar}}
         </div>
-        <div class="col-md-10 mb-4">
-            {{> alerts}}
-            <h1>Όλοι οι υπάλληλοι προς έγκριση</h1>
-            <div class="list-group">
-                {{#unless emp}}
-                <p>Δεν υπάρχουν χρήστες που περιμένουν έγκριση</p>
-                {{/unless}}
-                {{#each emp}}
-                <a href={{makeLink '/admin/approve-' _id}}
-                    class="list-group-item list-group-item-action">{{lastName}}</a>
-                {{/each}}
+        <div class="col-md-9 mb-4">
+            <div class="row justify-content-center">
+                <div class="p-0 mx-2 w-100 border-bottom" style="background-color: #f5f5f5;">
+                    <div class="container-fluid">
+                        <div class="row shadow-sm">
+                            <div class="col-sm-9 d-flex justify-content-start">
+                                <h3 class="p-4 mb-0 w-100">Υπάλληλοι προς έγκριση</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="mx-2 my-0 w-100" style="max-width: 760px;">
+                    {{> alerts}}
+                </div>
+            </div>
+            {{#unless emp}}
+            <p>Δεν υπάρχουν χρήστες που περιμένουν έγκριση</p>
+            {{else}}
+            <table class="table" id="employees" style="background-color: white;">
+                <thead>
+                    <tr>
+                        <th>ΟΝΟΜΑΤΕΠΩΝΥΜΟ</th>
+                        <th>ΤΜΗΜΑ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each emp}}
+                    <tr class='clickable-row' data-href='{{makeLink '/admin/approve-' _id}}'>
+                        <td scope="row" class="name">{{lastName}} {{firstName}}</td>
+                        <td class="dep">{{department}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{/unless}}
         </div>
     </div>
+    <style>
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: lightgray;
+        }
+    </style>
 </div>
+
+<script>
+    let users = document.querySelectorAll('.clickable-row')
+    users.forEach(user => {
+        user.addEventListener('click', () => {
+            window.location.href = user.getAttribute('data-href');
+        })
+    })
+</script>
