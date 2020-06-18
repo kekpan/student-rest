@@ -1,40 +1,99 @@
-<div class="container mt-3" style="width: 720px;">
-    <h1>Το καλάθι μου</h1>
-    <hr>
-    {{> alerts}}
+<div class="container" style="max-width: 520px;">
+    <div class="row justify-content-center">
+        <div class="p-0 w-100 border-bottom" style="background-color: #f5f5f5;">
+            <div class="container-fluid">
+                <div class="row shadow-sm">
+                    <div class="col-sm-6 d-flex justify-content-start">
+                        <h3 class="py-4 pl-0 mb-0 w-100">Το καλάθι σας</h3>
+                    </div>
+                    {{#if products}}
+                    <div class="col-sm-6 my-1 d-flex justify-content-end align-items-center">
+                        <h4 class="mb-0">
+                            <span class="badge badge-secondary badge-pill">{{session.cart.totalQty}}</span>
+                        </h4>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="mx-2 my-0 w-100">
+            {{> alerts}}
+        </div>
+    </div>
     {{#if products}}
-    <div class="row">
-        <div class="col">
-            <ul class="list-group">
-                {{#each products}}
-                <li class="list-group-item">
-                    <span class="badge">{{this.qty}} × </span>
-                    <strong>{{this.item.title}}</strong>
-                    <span> - {{this.price}} euros</span>
-                    <ul class="dropdown">
-                        <li><a href={{joinStr "add/" this.item._id}}>Προσθήκη ενός</a></li>
-                        <li><a href={{joinStr "reduce/" this.item._id}}>Αφαίρεση ενός</a></li>
-                        <li><a href={{joinStr "remove/" this.item._id}}>Αφαίρεση όλων</a></li>
-                    </ul>
-                </li>
-                {{/each}}
-            </ul>
+    {{#each products}}
+    <div class="row justify-content-center border-bottom">
+        <div class="col-2 list-group-item border-top-0 border-bottom-0 border-right-0 d-flex justify-content-center align-items-start">
+            <span class="badge badge-secondary badge-pill p-2">{{this.qty}}</span>
+        </div>
+        <div class="col-5 list-group-item border-right-0 border-bottom-0 border-left-0">
+            <p class="font-weight-bold d-flex align-items-start justify-content-start mb-2">{{this.item.title}}</p>
+            <small class="text-muted">
+                <ul class="px-3 mb-0" style="list-style-type:disc">
+                    <li>Πρωινά: {{this.item.meal.breakfast}}</li>
+                    <li>Μεσημεριανά: {{this.item.meal.lunch}}</li>
+                    <li>Βραδινά: {{this.item.meal.dinner}}</li>
+                </ul>
+            </small>
+        </div>
+        <div class="col-3 list-group-item border-left-0 border-bottom-0 border-right-0 d-flex justify-content-center align-items-start">
+            <div class="btn-group" role="group">
+                <a href={{joinStr "add/" this.item._id}}>
+                    <button type="button" class="btn btn-light py-0 px-2">
+                        <svg class="bi bi-plus-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        </svg>
+                    </button>
+                </a>
+                <a href={{joinStr "reduce/" this.item._id}}>
+                    <button type="button" class="btn btn-light py-0 px-2">
+                        <svg class="bi bi-dash-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path fill-rule="evenodd" d="M3.5 8a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </button>
+                </a>
+                <a href={{joinStr "remove/" this.item._id}}>
+                    <button type="button" class="btn btn-light py-0 px-2">
+                        <svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="col-2 list-group-item border-left-0 border-bottom-0 d-flex justify-content-center align-items-start">
+            <span class="text-muted" style="height: 26px;">{{this.price}} &euro;</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <strong>Συνολικό κόστος: {{totalPrice}} euros</strong>
+    {{/each}}
+    <div class="row justify-content-center">
+        <div class="col list-group-item border-top-0 d-flex justify-content-center align-items-center" style="background-color: #f5f5f5;">
+            <p class="mb-0">Σύνολο: <strong>{{totalPrice}} &euro;</strong></p>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <a class="btn" href="/coupons/checkout">Checkout</a>
+    <div class="row justify-content-center">
+        <div class="col list-group-item border-top-0 border-0 d-flex justify-content-center align-items-center" style="background:none">
+            <a class="btn" href="/coupons/checkout">Συνέχεια στην πληρωμή</a>
+        </div>
+        <div class="col list-group-item border-top-0 border-0 d-flex justify-content-center align-items-center" style="background:none">
+            <a class="btn" href="/coupons/">Επιστροφή στα πακέτα</a>
         </div>
     </div>
     {{else}}
-    <div class="row">
-        <div class="col">
-            <h2>Δεν υπάρχουν κουπόνια στο καλάθι.</h2>
+    <div class="row justify-content-center">
+        <div class="col d-flex justify-content-center">
+            <p class="mt-3">Δεν υπάρχουν κουπόνια στο καλάθι σας.</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col list-group-item border-top-0 border-0 d-flex justify-content-center align-items-center" style="background:none">
+            <a class="btn" href="/coupons/">Επιστροφή στα πακέτα</a>
         </div>
     </div>
     {{/if}}

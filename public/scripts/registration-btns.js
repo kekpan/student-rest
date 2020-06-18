@@ -1,7 +1,7 @@
 // Switch to employee registration
 $(document).ready( _ => {
     $('#emp-btn').on('click', _ => {
-        $("#form").show();
+        $("#form-user").show();
         $("#label-idNumber-std").hide();
         $("#label-idNumber-emp").show();
         $("#label-year-std").hide();
@@ -16,7 +16,7 @@ $(document).ready( _ => {
 // Switch to student registration
 $(document).ready( _ => {
     $('#std-btn').on('click', _ => {
-        $("#form").show();
+        $("#form-user").show();
         $("#label-idNumber-emp").hide();
         $("#label-idNumber-std").show();
         $("#label-year-emp").hide();

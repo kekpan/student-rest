@@ -7,7 +7,12 @@ const Purchase = require('../models/purchase-model');
 
 exports.show_all = (req, res) => {
     Coupon.find({}, (err, coupons) => {
-        let locals = flashLocals(res); locals.coupons = coupons;
+        let couponsChunks = [];
+        let chunkSize = 3;
+        for (let i = 0; i < coupons.length; i += chunkSize) {
+            couponsChunks.push(coupons.slice(i, i+chunkSize));
+        }
+        let locals = flashLocals(res); locals.coupons = couponsChunks;
         res.render('coupons/show-all', locals); 
     });
 }
