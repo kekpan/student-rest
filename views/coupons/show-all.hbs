@@ -1,24 +1,53 @@
-<div class="container mt-3" style="width: 720px;">
-    <h1>Κουπόνια</h1>
-    <hr>
-    <a href="/coupons/cart" class="btn">Το καλάθι μου
-        <span class="badge">{{session.cart.totalQty}}</span>
-    </a>
-    <hr>
-    {{> alerts}}
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="p-0 mx-2 w-100 border-bottom" style="background-color: #f5f5f5;">
+            <div class="container-fluid">
+                <div class="row shadow-sm">
+                    <div class="col-sm-6 d-flex justify-content-start">
+                        <h3 class="p-4 mb-0 w-100">Πακέτα κουπονιών</h3>
+                    </div>
+                    <div class="col-sm-6 my-1 d-flex justify-content-end align-items-center">
+                        <a href="/coupons/cart" class="btn" style="background-color: #803136;">Το καλάθι μου
+                            <span class="badge badge-light ml-2">{{session.cart.totalQty}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="mx-2 my-0 w-100">
+            {{> alerts}}
+        </div>
+    </div>
     {{#each coupons}}
-    <div class="card my-3">
-        <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">
-                <ul>
-                    <li>Breakfast: {{meal.breakfast}}</li>
-                    <li>Lunch: {{meal.lunch}}</li>
-                    <li>Dinner: {{meal.dinner}}</li>
-                </ul>
-                <span><strong>Price: {{price}} €</strong></span>
-            </p>
-            <a href={{joinStr '/coupons/' id}} class="btn">Προσθήκη στο καλάθι</a>
+    <div class="row justify-content-center">
+        <div class="p-4 mx-2 w-100 border-bottom bg-white">
+            <div class="container-fluid">
+                <div class="row">
+                    {{#each this}}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card my-3" style="background-color: #ffffee;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{this.title}}</h5><hr>
+                                <p class="card-text">
+                                    <dl class="border shadow-sm p-2 bg-white">
+                                        <dt>Πρωινά:</dt>
+                                        <dd>{{this.meal.breakfast}}</dd>
+                                        <dt>Μεσημεριανά:</dt>
+                                        <dd>{{this.meal.lunch}}</dd>
+                                        <dt>Βραδινά:</dt>
+                                        <dd>{{this.meal.dinner}}</dd>
+                                    </dl>
+                                    <p class="border p-2 shadow-sm bg-white"><strong>Τιμή: {{this.price}} &euro;</strong></p>
+                                </p>
+                                <a href={{joinStr '/coupons/' id}} class="btn justify-content-center w-100">Προσθήκη στο καλάθι</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
         </div>
     </div>
     {{/each}}
