@@ -205,3 +205,11 @@ exports.anncmnt = (req) => {
     req.checkBody('title', 'Ο τίτλος είναι απαραίτητος.').notEmpty();
     req.checkBody('body', 'Το περιεχόμενο είναι απαραίτητο.').notEmpty();
 }
+
+exports.checkout = (req) => {
+    req.checkBody('card-name', 'Το όνομα του κατόχου της κάρτας είναι απαραίτητο.').notEmpty();
+    req.checkBody('card-number', 'Ο αριθμός της πιστωτικής κάρτας είναι απαραίτητος.').notEmpty();
+    req.checkBody('card-expiry-month', 'Ο μήνας λήξης της κάρτας είναι απαραίτητος.').notEmpty();
+    req.checkBody('card-expiry-year', 'Το έτος λήξης της κάρτας είναι απαραίτητο.').notEmpty();
+    req.checkBody('card-cvc', 'Ο κωδικός ασφαλείας της κάρτας είναι απαραίτητος').notEmpty();
+}

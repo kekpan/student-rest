@@ -55,6 +55,11 @@ exports.remove_all = (req, res) => {
     res.redirect('/coupons/cart')
 }
 
+exports.remove_cart = (req, res) => {
+    req.session.cart = null;
+    res.redirect('/coupons/cart');
+}
+
 exports.show_cart = (req, res) => {
     if (!req.session.cart) return res.render('coupons/cart', {products: null});
     const cart = new Cart(req.session.cart);
@@ -80,7 +85,7 @@ exports.checkout_post = (req, res) => {
     },
     function(err, charge) {
         if (err) {
-            req.flash('error', err.message);
+            req.flash('error', 'Σφάλμα κατά την αγορά, παρακαλώ επικοινωνείστε με κάποιον υπεύθυνο.');
             return res.redirect('/coupons/checkout');
         }
         const purchase = new Purchase({
@@ -99,7 +104,7 @@ exports.checkout_post = (req, res) => {
         }
         purchase.save((err, result) => {
             User.updateOne({_id: req.user._id}, {coupons: userCoupons}, (err) => {
-                req.flash('success', 'Successfulyy bought product!');
+                req.flash('success', 'Επιτυχής αγορά προϊόντων!');
                 req.session.cart = null;
                 res.redirect('/coupons');
             });
