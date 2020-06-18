@@ -7,7 +7,14 @@
                         <h3 class="py-4 pl-0 mb-0 w-100">Το καλάθι σας</h3>
                     </div>
                     {{#if products}}
-                    <div class="col-sm-6 my-1 d-flex justify-content-end align-items-center">
+                    <div class="col-sm-5 my-1 d-flex justify-content-end align-items-center">
+                        <a href="/coupons/cart/remove">
+                            <h4 class="mb-0">
+                                <span class="badge badge-secondary">Άδειασμα</span>
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="col-sm-1 my-1 d-flex justify-content-end align-items-center">
                         <h4 class="mb-0">
                             <span class="badge badge-secondary badge-pill">{{session.cart.totalQty}}</span>
                         </h4>

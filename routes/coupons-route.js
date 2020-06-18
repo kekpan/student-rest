@@ -15,6 +15,7 @@ router.get('/remove/:id', couponCtrl.remove_all);
 router.get('/reduce/:id', couponCtrl.remove_one);
 router.get('/add/:id', couponCtrl.add_one);
 router.get('/cart', couponCtrl.show_cart);
+router.get('/cart/remove', couponCtrl.remove_cart);
 router.get('/checkout', auth.ensure, couponCtrl.checkout_get);
 router.post('/checkout', auth.ensure, couponCtrl.checkout_post);
 router.get('/:id', couponCtrl.add_to_cart);

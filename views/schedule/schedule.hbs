@@ -1,62 +1,86 @@
-<div class="container">
-    <h1>Πρόγραμμα φαγητού</h1>
-    {{#if user}}
-    {{#if (userIsCook user)}}
-    <hr><a href="/schedule/edit" class="btn mb-3">Επεξεργασία</a>
-    {{/if}}
-    {{/if}}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Ημέρα</th>
-                <th scope="col">Πρωινό</th>
-                <th scope="col">Μεσημεριανό</th>
-                <th scope="col">Βραδινό</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Δευτέρα</th>
-                <td>{{schedule.monday.breakfast}}</td>
-                <td>{{schedule.monday.lunch}}</td>
-                <td>{{schedule.monday.dinner}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Τρίτη</th>
-                <td>{{schedule.tuesday.breakfast}}</td>
-                <td>{{schedule.tuesday.lunch}}</td>
-                <td>{{schedule.tuesday.dinner}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Τετάρτη</th>
-                <td>{{schedule.wednesday.breakfast}}</td>
-                <td>{{schedule.wednesday.lunch}}</td>
-                <td>{{schedule.wednesday.dinner}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Πέμπτη</th>
-                <td>{{schedule.thursday.breakfast}}</td>
-                <td>{{schedule.thursday.lunch}}</td>
-                <td>{{schedule.thursday.dinner}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Παρασκευή</th>
-                <td>{{schedule.friday.breakfast}}</td>
-                <td>{{schedule.friday.lunch}}</td>
-                <td>{{schedule.friday.dinner}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Σάββατο</th>
-                <td>{{schedule.saturday.breakfast}}</td>
-                <td>{{schedule.saturday.lunch}}</td>
-                <td>{{schedule.saturday.dinner}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Κυριακή</th>
-                <td>{{schedule.sunday.breakfast}}</td>
-                <td>{{schedule.sunday.lunch}}</td>
-                <td>{{schedule.sunday.dinner}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="p-0 mx-2 w-100 border-bottom" style="background-color: #f5f5f5;">
+            <div class="container-fluid">
+                <div class="row shadow-sm">
+                    <div class="col-sm-9 d-flex justify-content-start">
+                        <h3 class="p-4 mb-0 w-100">Πρόγραμμα φαγητού</h3>
+                    </div>
+                    <div class="col-sm-3 my-1 d-flex justify-content-end align-items-center">
+                        {{#if user}}{{#if (userIsCook user)}}
+                        <a href="/schedule/edit" class="btn mb-0" id="editSchd">Επεξεργασία</a>
+                        {{/if}}{{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="mx-2 my-0 w-100">
+            {{> alerts}}
+        </div>
+    </div>
+    <div class="row justify-content-center px-2">
+        <div class="p-0 w-100 border-bottom bg-white">
+            <div class="container-fluid pt-3">
+                <div class="row table-responsive m-0">
+                    <table class="table table-striped border-left border-right">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center w-25 align-middle"></th>
+                                <th scope="col" class="text-center w-25 align-middle">Πρωινό</th>
+                                <th scope="col" class="text-center w-25 align-middle">Μεσημεριανό</th>
+                                <th scope="col" class="text-center w-25 align-middle">Βραδινό</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-center w-25 align-middle">Δευτέρα</th>
+                                <td class="text-center w-25 align-middle">{{schedule.monday.breakfast}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.monday.lunch}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.monday.dinner}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center w-25 align-middle">Τρίτη</th>
+                                <td class="text-center w-25 align-middle">{{schedule.tuesday.breakfast}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.tuesday.lunch}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.tuesday.dinner}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center w-25 align-middle">Τετάρτη</th>
+                                <td class="text-center w-25 align-middle">{{schedule.wednesday.breakfast}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.wednesday.lunch}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.wednesday.dinner}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center w-25 align-middle">Πέμπτη</th>
+                                <td class="text-center w-25 align-middle">{{schedule.thursday.breakfast}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.thursday.lunch}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.thursday.dinner}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center w-25 align-middle">Παρασκευή</th>
+                                <td class="text-center w-25 align-middle">{{schedule.friday.breakfast}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.friday.lunch}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.friday.dinner}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center w-25 align-middle">Σάββατο</th>
+                                <td class="text-center w-25 align-middle">{{schedule.saturday.breakfast}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.saturday.lunch}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.saturday.dinner}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center w-25 align-middle">Κυριακή</th>
+                                <td class="text-center w-25 align-middle">{{schedule.sunday.breakfast}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.sunday.lunch}}</td>
+                                <td class="text-center w-25 align-middle">{{schedule.sunday.dinner}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><em>* Όλα τα πρωινά συνοδεύονται με γάλα, καφέ, άρτο και βούτυρο.</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
