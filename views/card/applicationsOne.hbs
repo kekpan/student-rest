@@ -11,6 +11,9 @@
                             <div class="col-sm-9 d-flex justify-content-start">
                                 <h3 class="p-4 mb-0 w-100">{{student.lastName}} {{student.firstName}}</h3>
                             </div>
+                            <div class="col-sm-3 my-1 d-flex justify-content-end align-items-center">
+                                <a href={{makeLink '/admin/all-' student._id}} target="_blank" class="btn" id="newAnncmnt">Προφίλ</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -20,10 +23,14 @@
                     {{> alerts}}
                 </div>
             </div>
+            <label for="pistopoihtika" style="margin-top: 1em;">Πιστοποιητικά</label>
             <ul class="list-group">
-                <a class="list-group-item list-group-item-action" download={{joinStr 'Πάσο_' student.idNumber}} href={{imagePath idCard}}>Φοιτητική ταυτότητα</a>
-                <a class="list-group-item list-group-item-action" download={{joinStr 'Φορολογική_' student.idNumber}} href={{imagePath tax}}>Φορολογική δήλωση</a>
-                <a class="list-group-item list-group-item-action" download={{joinStr 'Φωτογραφία_' student.idNumber}} href={{imagePath photo}}>Φωτογραφία</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Πάσο_' student.idNumber}}
+                    href={{imagePath idCard}}>Φοιτητική ταυτότητα</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Φορολογική_' student.idNumber}}
+                    href={{imagePath tax}}>Φορολογική δήλωση</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Φωτογραφία_' student.idNumber}}
+                    href={{imagePath photo}}>Φωτογραφία</a>
             </ul>
             <form method="post">
                 <div class="form-group mt-3">
@@ -53,7 +60,8 @@
                 </div>
                 <div class="form-group mt-3 d-inline">
                     <button class="btn" id="accept-btn" type="submit" name='answer' value="accept">Αποδοχή</button>
-                    <button class="btn" id="decline-btn" type="submit" name='answer' value="decline" disabled>Απόριψη</button>
+                    <button class="btn" id="decline-btn" type="submit" name='answer' value="decline"
+                        disabled>Απόριψη</button>
                 </div>
             </form>
         </div>

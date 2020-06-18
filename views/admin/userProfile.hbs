@@ -99,12 +99,14 @@
                     <input type="text" class="form-control" id="adrZipCode" value="{{data.address.zipCode}}">
                 </div>
             </div>
+            {{#if (userIsAdmin user.userType)}}
             <form method="post">
                 <a id="btn1" class="mt-4 btn">Διαγραφή χρήστη</a>
                 <button id="btn2" type="submit" name="userId" value={{data._id}} class="mt-4 btn"
                     style="display: none;">Επιβεβαίωση</button>
                 <a id="btn3" class="mt-4 btn" style="display: none;">Ακύρωση</a>
             </form>
+            {{/if}}
         </div>
     </div>
 </div>

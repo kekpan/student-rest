@@ -18,7 +18,7 @@ router.post('/approve-:id', auth.ensure, auth.ensureAdmin, adminCtrl.approveEmpO
 
 router.get('/all', auth.ensure, auth.ensureAdmin, adminCtrl.allUsers_get);
 
-router.get('/all-:id', auth.ensure, auth.ensureAdmin, adminCtrl.userProfile_get);
+router.get('/all-:id', auth.ensure, auth.ensureSec, adminCtrl.userProfile_get);
 
 router.post('/all-:id', auth.ensure, auth.ensureAdmin, adminCtrl.deleteUser_post);
 
