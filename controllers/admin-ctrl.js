@@ -44,9 +44,15 @@ exports.approveEmpOne_post = async (req, res) => {
         { userType: "employee" }
       );
       req.flash("success", "Ο χρήστης εγκρίθηκε με επιτυχία");
-    } else req.flash("error", "Κάτι δεν πήγε καλά");
+    } else {
+      await User.deleteOne({
+        userType: "pending",
+        _id: req.params.id,
+      });
+    }
     res.redirect("/admin/approve");
   } catch (err) {
+    req.flash("error", "Κάτι δεν πήγε καλά");
     res.redirect("/admin/approve");
   }
 };
