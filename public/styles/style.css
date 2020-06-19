@@ -117,6 +117,30 @@ h5 {
     text-decoration: underline;
 }
 
+#footer-link:link {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+#footer-link:visited {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+#footer-link:hover {
+  color: rgb(153, 153, 153);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+#footer-link:active {
+  color: rgb(250, 250, 250);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 #newAnncmnt, #editSchd {
     background-color: #803136;
 }
