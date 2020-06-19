@@ -25,3 +25,9 @@ exports.ensureAdmin = (req, res, next) => {
     if (req.user.userType === 'admin') return next();
     res.redirect('/');
 }
+
+exports.ensureLog = (req, res, next) => {
+    if (req.user.userType === 'admin') return next();
+    if (req.user.userType !== 'pending' && req.user.department === 'Λογιστήριο') return next();
+    res.redirect('/');
+}

@@ -28,9 +28,9 @@ router.post('/profile', auth.ensure, userCtrl.profile_post);
 
 router.post('/updatepass', auth.ensure, userCtrl.updatepass_post);
 
-router.get('/purchases', userCtrl.purchases);
+router.get('/purchases', auth.ensure, auth.ensureStud, userCtrl.purchases);
 
-router.get('/purchases-all', userCtrl.purchases_all);
+router.get('/purchases-all', auth.ensure, auth.ensureLog, userCtrl.purchases_all);
 
 // Export module
 module.exports = router;
