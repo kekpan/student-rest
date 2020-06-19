@@ -71,19 +71,32 @@
             {{#if (ifEqual application.status '0')}}
             <h3>Τα πιστοποιητικά που καταθέσατε</h3>
             <ul class="list-group">
-                <a class="list-group-item list-group-item-action" download={{joinStr 'Πάσο_' user.idNumber}} href={{imagePath idCard}}>Φοιτητική ταυτότητα</a>
-                <a class="list-group-item list-group-item-action" download={{joinStr 'Φορολογική_' user.idNumber}} href={{imagePath tax}}>Φορολογική δήλωση</a>
-                <a class="list-group-item list-group-item-action" download={{joinStr 'Φωτογραφία_' user.idNumber}} href={{imagePath photo}}>Φωτογραφία</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Πάσο_' user.idNumber}}
+                    href={{imagePath idCard}}>Φοιτητική ταυτότητα</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Φορολογική_' user.idNumber}}
+                    href={{imagePath tax}}>Φορολογική δήλωση</a>
+                <a class="list-group-item list-group-item-action" download={{joinStr 'Φωτογραφία_' user.idNumber}}
+                    href={{imagePath photo}}>Φωτογραφία</a>
             </ul>
             {{/if}}
             {{#if (ifEqual application.status '1')}}
-            <div class="alert alert-success mb-3 p-2" role="alert">Η αίτηση σας έχει εγκριθεί. Μπορείτε να την παραλάβετε από τα γραφεία της Μέριμνας</div>
+            <div class="alert alert-success mb-3 p-2" role="alert">Η αίτηση σας έχει εγκριθεί. Μπορείτε να την
+                παραλάβετε από τα γραφεία της Μέριμνας</div>
             {{/if}}
             {{#if (ifEqual application.status '2')}}
-            <div class="alert alert-danger mb-3 p-2" role="alert">Η αίτηση σας έχει απορριφθεί. Παρακαλώ ενημερώστε τα δικαιολογητικά σας. Λόγος απόρριψης: {{application.text}}</div>
+            <div class="alert alert-danger mb-3 p-2" role="alert">Η αίτηση σας έχει απορριφθεί. Παρακαλώ ενημερώστε τα
+                δικαιολογητικά σας. Λόγος απόρριψης: {{application.text}}</div>
             {{> cardUpdateForm}}
             {{/if}}
             {{/unless}}
         </div>
     </div>
 </div>
+
+<style>
+    .filepond--panel-root {
+        background-color: white;
+        border: solid 1px lightgray ;
+        border-radius: 2px;
+    }
+</style>
