@@ -153,11 +153,3 @@ exports.check_post = async (req, res) => {
     res.send(err);
   }
 };
-
-exports.kek = async (req, res) => {
-  await Photo.deleteMany({});
-  await IdCard.deleteMany({});
-  await Tax.deleteMany({});
-  await Application.deleteMany({});
-  res.redirect("/card/new");
-};
