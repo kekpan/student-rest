@@ -16,9 +16,20 @@
 </head>
 <body class="container-fluid m-0 p-0">
     {{> navbar}}
-    {{{body}}}
+    <div class="main">
+        {{{body}}}
+    </div>
     {{> footer}}
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>
+
+<style>
+    .main {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        min-height: 75vh;
+    }
+</style>
