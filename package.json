@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "debug": "nodemon --inspect server",
-    "start": "node server"
+    "start": "node server",
+    "postinstall": "bower cache clean && bower install bootstrap && bower install jquery"
   },
   "repository": {
     "type": "git",
