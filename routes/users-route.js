@@ -32,5 +32,7 @@ router.get('/purchases', userCtrl.purchases);
 
 router.get('/purchases-all', userCtrl.purchases_all);
 
+router.get('/coupons', auth.ensure, userCtrl.coupons);
+
 // Export module
 module.exports = router;

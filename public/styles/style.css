@@ -142,6 +142,30 @@ h5 {
   text-decoration: underline;
 }
 
+#files-link:link {
+  color: #803136;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+#files-link:visited {
+  color: #803136;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+#files-link:hover {
+  color: #9b3a40;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+#files-link:active {
+  color: #c74e56;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 #newAnncmnt, #editSchd {
     background-color: #803136;
 }
@@ -264,4 +288,8 @@ h5 {
 
   #page-heading {
     font-family: 'Ubuntu', sans-serif;
+  }
+
+  #coupons-row:last-child > div > div > div > div > div {
+    margin-bottom: 16px;
   }

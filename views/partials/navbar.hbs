@@ -57,6 +57,8 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     {{#unless (userIsAdmin user.userType)}}
                     <a class="dropdown-item" href="/users/profile">Προφίλ</a>
+                    <a class="dropdown-item" href="/users/purchases">Οι αγορές μου</a>
+                    <a class="dropdown-item" href="/users/coupons">Τα κουπόνια μου</a>
                     <div class="dropdown-divider"></div>
                     {{/unless}}
                     <a class="dropdown-item" href="/users/logout">Αποσύνδεση</a>

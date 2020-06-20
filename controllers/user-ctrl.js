@@ -8,6 +8,7 @@ var backURL;
 const User = require("../models/user-model");
 const Purchase = require('../models/purchase-model');
 const Cart = require('../models/cart-model');
+const { locals } = require("../app");
 
 
 exports.register_get = (req, res) => {
@@ -120,4 +121,9 @@ exports.purchases_all = (req, res) => {
         let locals = flashLocals(res); locals.purchases = purchases;
         res.render('all-purchases', locals);
     });
+}
+
+exports.coupons = (req, res) => {
+  let locals = flashLocals(res);
+  res.render('my-coupons', locals);
 }

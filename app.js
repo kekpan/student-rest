@@ -58,11 +58,7 @@ app.use(cookieParser());
 app.use(session({
     secret: 'superflexboy',
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: true,
-        httpOnly: true
-    }
+    saveUninitialized: false
 }));
 app.use(flash());
 app.use(passport.initialize());

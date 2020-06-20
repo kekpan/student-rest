@@ -7,7 +7,7 @@
                         <h3 class="p-4 mb-0 w-100">Πακέτα κουπονιών</h3>
                     </div>
                     <div class="col-sm-6 my-1 d-flex justify-content-end align-items-center">
-                        <a href="/coupons/cart" class="btn" style="background-color: #803136;">Το καλάθι μου
+                        <a href="/coupons/cart" class="btn" style="background-color: #803136;">Το καλάθι σας
                             <span class="badge badge-light ml-2">{{session.cart.totalQty}}</span>
                         </a>
                     </div>
@@ -21,13 +21,13 @@
         </div>
     </div>
     {{#each coupons}}
-    <div class="row justify-content-center">
-        <div class="p-4 mx-2 w-100 border-bottom bg-white">
+    <div class="row justify-content-center" id="coupons-row">
+        <div class="px-4 mx-2 w-100 bg-white">
             <div class="container-fluid">
                 <div class="row">
                     {{#each this}}
-                    <div class="col-sm-6 col-md-4">
-                        <div class="card my-3" style="background-color: #ffffee;">
+                    <div class="col-lg-4">
+                        <div class="card mt-3" style="background-color: #ffffee;">
                             <div class="card-body">
                                 <h5 class="card-title">{{this.title}}</h5><hr>
                                 <p class="card-text">

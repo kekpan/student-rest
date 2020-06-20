@@ -1,23 +1,63 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Αγορές όλων</h1>
-            <hr>
-            {{#each purchases}}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <ul class="list-group">
-                        {{#each this.items}}
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {{this.item.title}} | Ποσότητα: {{this.qty}}
-                            <span class="badge badge-primary badge-pill">{{this.price}}</span>
-                        </li>
-                        {{/each}}
-                    </ul>
+<div class="container" style="max-width: 520px;">
+    <div class="row justify-content-center">
+        <div class="p-0 w-100 border-bottom" style="background-color: #f5f5f5;">
+            <div class="container-fluid">
+                <div class="row shadow-sm">
+                    <div class="col d-flex justify-content-start">
+                        <h3 class="py-4 pl-0 mb-0 w-100">Όλες οι αγορές</h3>
+                    </div>
                 </div>
-                <div class="panel-footer mb-4 bg-light"><strong>{{this.cart.totalPrice}} euros</strong> by user: {{user}} - Payment Id: {{paymentId}}</div>
             </div>
-            {{/each}}
         </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="mx-2 my-0 w-100">
+            {{> alerts}}
+        </div>
+    </div>
+    {{#if purchases}}
+    {{#each purchases}}
+    <div class="row justify-content-center mt-4">
+        <div class="col list-group-item border-top d-flex justify-content-center align-items-center" style="background-color: #e7b76f;">
+            <p class="mb-0">Αναγνωριστικό αγοράς: <strong>{{paymentId}}</strong></p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col list-group-item d-flex justify-content-center align-items-center" style="background-color: #e7b76f;">
+            <p class="mb-0">Όνομα χρήστη: <strong>{{user}}</strong></p>
+        </div>
+    </div>
+    {{#each this.items}}
+    <div class="row justify-content-center border-bottom">
+        <div class="col-3 list-group-item border-top-0 border-bottom-0 border-right-0 d-flex justify-content-center align-items-start">
+            <span class="badge badge-secondary badge-pill p-2">{{this.qty}}</span>
+        </div>
+        <div class="col-6 list-group-item border-right-0 border-bottom-0 border-left-0">
+            <p class="font-weight-bold d-flex align-items-start justify-content-start mb-2">{{this.item.title}}</p>
+            <small class="text-muted">
+                <ul class="px-3 mb-0" style="list-style-type:disc">
+                    <li>Πρωινά: {{this.item.meal.breakfast}}</li>
+                    <li>Μεσημεριανά: {{this.item.meal.lunch}}</li>
+                    <li>Βραδινά: {{this.item.meal.dinner}}</li>
+                </ul>
+            </small>
+        </div>
+        <div class="col-3 list-group-item border-left-0 border-bottom-0 d-flex justify-content-center align-items-start">
+            <span class="text-muted" style="height: 26px;">{{this.price}} &euro;</span>
+        </div>
+    </div>
+    {{/each}}
+    <div class="row justify-content-center">
+        <div class="col list-group-item border-top-0 d-flex justify-content-center align-items-center" style="background-color: #f5f5f5;">
+            <p class="mb-0">Σύνολο: <strong>{{this.cart.totalPrice}} &euro;</strong></p>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="row justify-content-center">
+        <div class="col d-flex justify-content-center">
+            <p class="mt-3">Δεν έχουν πραγματοποιηθεί αγορές ακόμα.</p>
+        </div>
+    </div>
+    {{/if}}
 </div>
