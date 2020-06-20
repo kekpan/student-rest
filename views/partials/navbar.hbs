@@ -57,12 +57,11 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     {{#unless (userIsAdmin user.userType)}}
                     <a class="dropdown-item" href="/users/profile">Προφίλ</a>
-                    <a class="dropdown-item" href="/users/purchases">Οι αγορές μου</a>
-                    <a class="dropdown-item" href="/users/coupons">Τα κουπόνια μου</a>
                     <div class="dropdown-divider"></div>
                     {{/unless}}
                     {{#if (userIsStud user.userType)}}
-                    <a class="dropdown-item" href="/users/purchases">Οι Αγορές μου</a>
+                    <a class="dropdown-item" href="/users/purchases">Οι αγορές μου</a>
+                    <a class="dropdown-item" href="/users/coupons">Τα κουπόνια μου</a>
                     <div class="dropdown-divider"></div>
                     {{/if}}
                     <a class="dropdown-item" href="/users/logout">Αποσύνδεση</a>
