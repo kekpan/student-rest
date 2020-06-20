@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "debug": "nodemon --inspect server",
-    "start": "node server"
+    "start": "node server",
+    "postinstall": "bower cache clean && bower install bootstrap && bower install jquery"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "@handlebars/allow-prototype-access": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "bower": "^1.8.8",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "csurf": "^1.11.0",

@@ -25,8 +25,6 @@ router.post('/check-:id', auth.ensure, auth.ensureSec, cardCtrl.check_post);
 
 router.post('/update', auth.ensure, auth.ensureStud, cardCtrl.update_post);
 
-router.get('/kek', auth.ensure, cardCtrl.kek);
-
 router.get('/downloads/:id', (req, res) => {
     let file = path.join(__dirname, '..', 'public', 'downloads', req.params.id + '.doc');
     res.download(file);

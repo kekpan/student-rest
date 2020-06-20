@@ -20,6 +20,13 @@
                     {{> alerts}}
                 </div>
             </div>
+            <div class="row pt-2">
+                <div class="col d-flex">
+                    <div class="form-group w-100">
+                        <input type="text" id="search-bar" class="form-control" placeholder="Αναζήτηση...">
+                    </div>
+                </div>
+            </div>
             {{#unless emp}}
             <p>Δεν υπάρχουν χρήστες που περιμένουν έγκριση</p>
             {{else}}
@@ -57,4 +64,24 @@
             window.location.href = user.getAttribute('data-href');
         })
     })
+    let searchBar = document.querySelector('#search-bar');
+    searchBar.addEventListener('keypress', findUser);
+    function findUser(key) {
+        let check;
+        if (key.keyCode === 13) {
+            users.forEach(user => {
+                check = false;
+                user.querySelectorAll('td').forEach(col => {
+                    if (col.innerHTML.includes(searchBar.value)) {
+                        check = true;
+                    }
+                })
+                if (check) {
+                    user.style.display = 'table-row';
+                } else {
+                    user.style.display = 'none';
+                }
+            })
+        }
+    }
 </script>

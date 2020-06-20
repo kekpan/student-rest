@@ -20,13 +20,22 @@
                     {{> alerts}}
                 </div>
             </div>
-            <div class="form-group pt-2">
-                <label for="appType">Στάδιο αίτησης</label>
-                <select class="form-control" id="selector">
-                    <option value=1 selected>Προς έγκριση</option>
-                    <option value=2>Που έχουν εγκριθεί </option>
-                    <option value=3>Που έχουν απορριφθεί</option>
-                </select>
+            <div class="row pt-2">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="appType">Στάδιο αίτησης</label>
+                        <select class="form-control" id="selector">
+                            <option value=1 selected>Προς έγκριση</option>
+                            <option value=2>Που έχουν εγκριθεί </option>
+                            <option value=3>Που έχουν απορριφθεί</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6 d-flex align-items-end">
+                    <div class="form-group w-100">
+                        <input type="text" id="search-bar" class="form-control" placeholder="Αναζήτηση...">
+                    </div>
+                </div>
             </div>
             <table class="table" id="pending" style="background-color: white;">
                 <thead>
@@ -128,4 +137,24 @@
             window.location.href = user.getAttribute('data-href');
         })
     })
+    let searchBar = document.querySelector('#search-bar');
+    searchBar.addEventListener('keypress', findUser);
+    function findUser(key) {
+        let check;
+        if (key.keyCode === 13) {
+            users.forEach(user => {
+                check = false;
+                user.querySelectorAll('td').forEach(col => {
+                    if (col.innerHTML.includes(searchBar.value)) {
+                        check = true;
+                    }
+                })
+                if (check) {
+                    user.style.display = 'table-row';
+                } else {
+                    user.style.display = 'none';
+                }
+            })
+        }
+    }
 </script>
