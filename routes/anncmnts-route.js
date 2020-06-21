@@ -23,6 +23,10 @@ router.post('/:id', auth.ensure, auth.ensureSec, anncmntCtrl.edit);
 // One announcement DELETE
 router.delete('/:id', auth.ensure, auth.ensureSec, anncmntCtrl.delete);
 
+router.get('*', (req, res) => {
+    res.status(404).render('404', { user: req.user });
+});
+
 
 // Export module
 module.exports = router;

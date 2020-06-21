@@ -18,7 +18,8 @@ exports.approveEmp_get = async (req, res) => {
     locals.emp = pendingEmp;
     res.render("admin/approveEmp", locals);
   } catch (err) {
-    res.send(err);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -69,7 +70,8 @@ exports.allUsers_get = async (req, res) => {
     locals.all = allUsers;
     res.render("admin/allUsers", locals);
   } catch (err) {
-    res.send(err);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -83,7 +85,8 @@ exports.userProfile_get = async (req, res) => {
     locals.data = data;
     res.render("admin/userProfile", locals);
   } catch (err) {
-    res.send(err);
+    req.flash("error", "Ο χρήστης δεν βρέθηκε");
+    res.redirect("/admin/all");
   }
 };
 
@@ -100,7 +103,7 @@ exports.deleteUser_post = async (req, res) => {
     req.flash("success", "Ο χρήστης διαγράφτηκε επιτυχώς");
     res.redirect("/admin/all");
   } catch (err) {
-    req.flash("error", "Υπήρξε κάποιο πρόβλημα κατά την διγραφή");
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα κατά την διαγραφή");
     res.redirect("/admin/all");
   }
 };

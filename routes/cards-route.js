@@ -30,6 +30,9 @@ router.get('/downloads/:id', (req, res) => {
     res.download(file);
 });
 
+router.get('*', (req, res) => {
+    res.status(404).render('404', { user: req.user });
+});
 
 
 // Export module

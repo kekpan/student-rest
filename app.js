@@ -88,9 +88,9 @@ app.use('/admin', admin);
 app.use('/coupons', coupons);
 app.use('/', home);
 
-// app.get('*', (req, res) => {
-//     res.status(404).render('404', { user: req.user });
-// });
+app.get('*', (req, res) => {
+    res.status(404).render('404', { user: req.user });
+});
 
 // Export module
 module.exports = app;

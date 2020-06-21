@@ -18,6 +18,9 @@ router.get("/cart/remove", auth.ensure, auth.ensureStud, couponCtrl.remove_cart)
 router.get("/checkout", auth.ensure, auth.ensureStud, couponCtrl.checkout_get);
 router.post("/checkout", auth.ensure, auth.ensureStud, couponCtrl.checkout_post);
 router.get("/:id", auth.ensure, auth.ensureStud, couponCtrl.add_to_cart);
+router.get('*', (req, res) => {
+    res.status(404).render('404', { user: req.user });
+});
 
 // Export module
 module.exports = router;

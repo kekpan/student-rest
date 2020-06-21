@@ -13,7 +13,8 @@ exports.card_get = async (req, res) => {
     let locals = flashLocals(res);
     res.render("card/card", locals);
   } catch (error) {
-    res.send(error);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -37,7 +38,8 @@ exports.new_get = async (req, res) => {
     }
     res.render("card/cardNew", locals);
   } catch (error) {
-    res.send(error);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -58,7 +60,8 @@ exports.new_post = async (req, res) => {
     await IdCard.deleteOne({ userId: req.user._id });
     await Tax.deleteOne({ userId: req.user._id });
     await Application.deleteOne({ userId: req.user._id });
-    res.send(err);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -92,7 +95,8 @@ exports.update_post = async (req, res) => {
     await Application.updateOne({ userId: req.user._id }, { status: "0" });
     res.redirect("/card/new");
   } catch (error) {
-    res.send(error);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -121,7 +125,8 @@ exports.applicationsAll_get = async (req, res) => {
     locals.applications = applicationList;
     res.render("card/applications", locals);
   } catch (error) {
-    res.send(error);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -140,7 +145,8 @@ exports.check_get = async (req, res) => {
     locals.application = application;
     res.render("card/applicationsOne", locals);
   } catch (error) {
-    res.send(error);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };
 
@@ -150,6 +156,7 @@ exports.check_post = async (req, res) => {
     await Application.updateOne({ userId: req.params.id }, changes);
     res.redirect("/card/all");
   } catch (err) {
-    res.send(err);
+    req.flash("error", "Υπήρξε κάποιο πρόβλημα, παρακαλώ προσπαθήστε ξανά");
+    res.redirect("/");
   }
 };

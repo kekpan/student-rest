@@ -34,5 +34,9 @@ router.get('/purchases-all', auth.ensure, auth.ensureLog, userCtrl.purchases_all
 
 router.get('/coupons', auth.ensure, userCtrl.coupons);
 
+router.get('*', (req, res) => {
+    res.status(404).render('404', { user: req.user });
+});
+
 // Export module
 module.exports = router;
