@@ -22,11 +22,15 @@ const helpers = require('./services/helpers');
 const flash = require('express-flash-messages');
 const expressValidator = require('express-validator');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+const { env } = require('process');
 require('./services/passport')(passport);
 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 // Database connection
-mongoose.connect(`mongodb+srv://npanag:kekpwd@cluster0-u3iif.mongodb.net/student-rest-db`, {
+mongoose.connect(process.env.DB_URI , {
     useNewUrlParser: true, useUnifiedTopology: true
 });
 mongoose.set('useCreateIndex', true);
@@ -56,7 +60,7 @@ app.use(bodyParser.urlencoded({extended: false, limit: '25mb'}));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(session({
-    secret: 'superflexboy',
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false
 }));

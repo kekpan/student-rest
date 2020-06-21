@@ -11,7 +11,7 @@ const router = express.Router();
 router.use(express.static(path.join(__dirname, '..', 'public')));
 
 
-router.get('/', auth.ensure, auth.ensureStud, cardCtrl.card_get);
+router.get('/', cardCtrl.card_get);
 
 router.get('/new', auth.ensure, auth.ensureStud, cardCtrl.new_get);
 
@@ -28,7 +28,7 @@ router.post('/update', auth.ensure, auth.ensureStud, cardCtrl.update_post);
 router.get('/downloads/:id', (req, res) => {
     let file = path.join(__dirname, '..', 'public', 'downloads', req.params.id + '.doc');
     res.download(file);
-})
+});
 
 
 

@@ -17,13 +17,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="/schedule">Πρόγραμμα φαγητού</a>
             </li>
+            {{#unless user}}
+            <li class="nav-item">
+                <a class="nav-link" href="/card">Κάρτα σίτισης</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/coupons">Κουπόνια</a>
+            </li>
+            {{/unless}}
             {{#if user}}
             {{#if (userIsAdmin user.userType)}}
             <li class="nav-item">
                 <a class="nav-link" href="/admin/all">Χρήστες</a>
             </li>
             {{/if}}
-            {{#if (cardAccess user)}}
             {{#if (userIsStud user.userType)}}
             <li class="nav-item">
                 <a class="nav-link" href="/card">Κάρτα σίτισης</a>
@@ -31,12 +38,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="/coupons">Κουπόνια</a>
             </li>
-
-            {{else}}
+            {{/if}}
+            {{#if (userIsSec user.userType user.department)}}
             <li class="nav-item">
                 <a class="nav-link" href="/card/all">Κάρτες σίτισης</a>
             </li>
             {{/if}}
+            {{#if (userIsLog user.userType user.department)}}
+            <li class="nav-item">
+                <a class="nav-link" href="/users/purchases-all">'Ολες οι αγορές</a>
+            </li>
             {{/if}}
             {{/if}}
         </ul>

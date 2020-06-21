@@ -119,3 +119,11 @@ exports.userIsAdmin = function (userType) {
         return false;
     }
 }
+
+exports.userIsLog = function (userType, userDep) {
+    if ((userDep === 'Λογιστήριο' && userType !== 'pending') || userType === 'admin') {
+        return true;
+    } else {
+        return false;
+    }
+}

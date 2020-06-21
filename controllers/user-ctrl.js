@@ -107,7 +107,7 @@ exports.purchases = (req, res) => {
         });
         let locals = flashLocals(res); locals.purchases = purchases;
         res.render('user-purchases', locals);
-    });
+    }).limit(0);
 }
 
 exports.purchases_all = (req, res) => {
@@ -120,7 +120,7 @@ exports.purchases_all = (req, res) => {
         });
         let locals = flashLocals(res); locals.purchases = purchases;
         res.render('all-purchases', locals);
-    });
+    }).limit(0);
 }
 
 exports.coupons = (req, res) => {
