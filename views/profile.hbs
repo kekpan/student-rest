@@ -48,7 +48,12 @@
                 <input readonly type="text" class="form-control" id="idNumber" name="idNumber" value="{{data.idNumber}}">
             </div>
             <div class="form-group col-md-6">
-                <label for="year" id="label-year-std">Έτος Α' Εγγραφής </label>
+                <label for="year" id="label-year-std">
+                    {{#if (userIsStud data.userType)}}
+                    Έτος Α' Εγγραφής
+                    {{else}}
+                    Έτος Γέννησης
+                    {{/if}}</label>
                 <input readonly type="number" class="form-control" id="year" name="year" value="{{data.year}}">
             </div>
         </div>

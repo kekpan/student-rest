@@ -4,6 +4,10 @@ const User = require('../models/user-model');
 const Cart = require('../models/cart-model');
 const Purchase = require('../models/purchase-model');
 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 
 exports.show_all = (req, res) => {
     Coupon.find({}, (err, coupons) => {
@@ -76,7 +80,7 @@ exports.checkout_get = (req, res) => {
 exports.checkout_post = (req, res) => {
     if (!req.session.cart) return res.redirect('/coupons/cart');
     const cart = new Cart(req.session.cart);
-    var stripe = require('stripe')('sk_test_51Gt7l9L0WBGdFziUaH1mNnKmhKkabmGEclRZfVPealSwFsfXJNBz3mmDwxoQLYRkiwV63UZAVYrIudvXOxtnlMPE004DNP8IFL');
+    var stripe = require('stripe')(process.env.STRIPE_KEY);
     stripe.charges.create({
         amount: cart.totalPrice * 100,
         currency: 'eur',
